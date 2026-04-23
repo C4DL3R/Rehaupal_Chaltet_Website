@@ -24,6 +24,13 @@
           <li><a href="#" data-i18n="nav.rent">Mieten</a></li>
           <li><a href="#" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
+        <div class="lang-switcher lang-switcher--mobile">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
       </nav>
 
       <div class="header-right">
@@ -528,11 +535,82 @@
       window.open(url, '_blank');
     });
 
-    /* ===================== HEADER SCROLL ===================== */
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+    /* ===================== HEADER SCROLL + EXPAND ===================== */
+    const header      = document.getElementById('site-header');
+    const heroEl      = document.querySelector('.hero');
+    const logoImg     = document.querySelector('.logo-img');
+    const navLinks    = document.querySelectorAll('.main-nav a');
+    const headerPhone = document.querySelector('.header-phone');
+    const langBtns    = document.querySelectorAll('.header-right .lang-btn');
+    const langSeps    = document.querySelectorAll('.header-right .lang-sep');
+
+    // Collapsed ← → Expanded sizes
+    const LOGO_H_C  = 44,   LOGO_H_E  = 88;    // logo height px
+    const LOGO_W_C  = 160,  LOGO_W_E  = 320;   // logo max-width px
+    const NAV_FS_C  = 12.5, NAV_FS_E  = 19;    // nav font-size px
+    const NAV_LS_C  = 1.8,  NAV_LS_E  = 3;     // nav letter-spacing px
+    const LANG_FS_C = 11,   LANG_FS_E = 16;    // lang btn font-size px
+    const PHONE_S_C = 1,    PHONE_S_E = 1.6;   // phone icon scale
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function updateHeader() {
+      if (window.innerWidth <= 768) {
+        // Mobile: reset all desktop inline styles
+        header.style.height = header.style.background = '';
+        logoImg.style.height = logoImg.style.maxWidth = '';
+        navLinks.forEach(el => { el.style.fontSize = el.style.letterSpacing = ''; });
+        headerPhone.style.transform = '';
+        langBtns.forEach(el => { el.style.fontSize = ''; });
+        langSeps.forEach(el => { el.style.fontSize = ''; });
+        header.classList.toggle('scrolled', window.scrollY > 10);
+        return;
+      }
+
+      const expandedH = window.innerHeight / 3;
+      const collapsedH = 64;
+      const range    = expandedH - collapsedH;
+      const progress = Math.min(window.scrollY / range, 1);
+      const inv      = 1 - progress;           // 1 when expanded, 0 when collapsed
+
+      // Header height + background
+      header.style.height = Math.round(lerp(expandedH, collapsedH, progress)) + 'px';
+      header.classList.toggle('scrolled', progress >= 1);
+
+      if (progress >= 1) {
+        header.style.background = 'rgba(22,26,17,1)';
+      } else {
+        const alpha = (0.9 + 0.1 * progress).toFixed(2);
+        const stop  = Math.round(50 + 50 * progress);
+        header.style.background =
+          `linear-gradient(to bottom, rgba(22,26,17,${alpha}) 0%, rgba(22,26,17,${alpha}) ${stop}%, rgba(22,26,17,0) 100%)`;
+      }
+
+      // Logo
+      logoImg.style.height   = lerp(LOGO_H_C,  LOGO_H_E,  inv).toFixed(1) + 'px';
+      logoImg.style.maxWidth = Math.round(lerp(LOGO_W_C, LOGO_W_E, inv)) + 'px';
+
+      // Nav links
+      const navFS = lerp(NAV_FS_C, NAV_FS_E, inv).toFixed(2);
+      const navLS = lerp(NAV_LS_C, NAV_LS_E, inv).toFixed(2);
+      navLinks.forEach(el => {
+        el.style.fontSize      = navFS + 'px';
+        el.style.letterSpacing = navLS + 'px';
+      });
+
+      // Phone icon
+      const phoneScale = lerp(PHONE_S_C, PHONE_S_E, inv).toFixed(3);
+      headerPhone.style.transform = `scale(${phoneScale})`;
+
+      // Lang switcher
+      const langFS = lerp(LANG_FS_C, LANG_FS_E, inv).toFixed(2);
+      langBtns.forEach(el => { el.style.fontSize = langFS + 'px'; });
+      langSeps.forEach(el => { el.style.fontSize = langFS + 'px'; });
+    }
+
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    window.addEventListener('resize', updateHeader, { passive: true });
   </script>
 </body>
 </html>

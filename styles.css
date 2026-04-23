@@ -190,6 +190,10 @@ img { display: block; max-width: 100%; }
   user-select: none;
 }
 
+.lang-switcher--mobile {
+  display: none;
+}
+
 /* Mobile toggle */
 .mobile-toggle {
   display: none;
@@ -816,6 +820,28 @@ img { display: block; max-width: 100%; }
     max-width: 120px;
   }
 
+  /* Hide header lang switcher, show it inside the menu instead */
+  .header-right .lang-switcher { display: none; }
+
+  .lang-switcher--mobile {
+    display: flex;
+    padding: 24px 0 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 16px;
+    gap: 6px;
+  }
+
+  .lang-switcher--mobile .lang-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+    letter-spacing: 2px;
+  }
+
+  .lang-switcher--mobile .lang-sep {
+    font-size: 13px;
+    line-height: 2;
+  }
+
   .mobile-toggle { display: flex; }
 
   .main-nav {
@@ -843,27 +869,31 @@ img { display: block; max-width: 100%; }
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  .hero { height: calc(100svh - var(--header-h)); min-height: 480px; }
+  .hero { height: calc(100svh - var(--header-h)); min-height: 520px; }
 
-  .booking-widget { position: static; }
+  .booking-widget {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 
   .booking-tabs { padding: 0 16px; }
 
   .booking-form {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
-    padding: 16px;
+    gap: 10px;
+    padding: 14px 16px;
   }
 
-  .booking-fields { flex-direction: column; gap: 12px; }
+  .booking-fields { flex-direction: row; gap: 0; }
 
-  .booking-field { padding: 0; }
-  .booking-field--wide { max-width: 100%; }
+  .booking-field { padding: 0 12px; flex: 1; }
 
-  .booking-divider { display: none; }
+  .booking-divider { width: 1px; height: 36px; flex-shrink: 0; }
 
-  .booking-submit { margin-left: 0; justify-content: center; padding: 14px; }
+  .booking-submit { margin-left: 0; justify-content: center; padding: 13px; }
 
   .intro-section { padding: 56px 0 48px; }
 
@@ -895,4 +925,21 @@ img { display: block; max-width: 100%; }
   .container { padding-inline: 20px; }
   .booking-tabs { padding: 0 12px; }
   .booking-form { padding: 14px 12px; }
+}
+
+/* Desktop expanded header – initial state before JS kicks in */
+@media (min-width: 769px) {
+  .site-header {
+    height: 33vh;
+    background: linear-gradient(
+      to bottom,
+      rgba(22,26,17,0.9) 0%,
+      rgba(22,26,17,0.9) 50%,
+      rgba(22,26,17,0) 100%
+    );
+  }
+
+  .hero {
+    margin-top: 0;
+  }
 }
