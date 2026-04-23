@@ -20,14 +20,21 @@
 
       <nav class="main-nav" id="main-nav">
         <ul>
-          <li><a href="#">Fotos</a></li>
-          <li><a href="#">Mieten</a></li>
-          <li><a href="#">Kontakt</a></li>
+          <li><a href="#" data-i18n="nav.photos">Fotos</a></li>
+          <li><a href="#" data-i18n="nav.rent">Mieten</a></li>
+          <li><a href="#" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
       </nav>
 
       <div class="header-right">
-        <a href="tel:+4365127890" class="header-phone" aria-label="Anrufen">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+        <a href="#footer-phone" class="header-phone" aria-label="Telefonnummer anzeigen">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.57 21 3 13.43 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.01L6.6 10.8z"/>
           </svg>
@@ -59,34 +66,34 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
-          Buchen
+          <span data-i18n="booking.book">Buchen</span>
         </button>
         <button class="booking-tab" data-tab="anfragen">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
-          Anfragen
+          <span data-i18n="booking.inquire">Anfragen</span>
         </button>
       </div>
 
       <div class="booking-form" id="form-buchen">
         <div class="booking-fields">
           <div class="booking-field">
-            <label for="arrival">Ankunft</label>
+            <label for="arrival" data-i18n="booking.arrival">Ankunft</label>
             <div class="field-wrap">
               <input type="date" id="arrival" name="arrival">
             </div>
           </div>
           <div class="booking-divider"></div>
           <div class="booking-field">
-            <label for="departure">Abreise</label>
+            <label for="departure" data-i18n="booking.departure">Abreise</label>
             <div class="field-wrap">
               <input type="date" id="departure" name="departure">
             </div>
           </div>
         </div>
         <button class="booking-submit">
-          Verfügbarkeit prüfen
+          <span data-i18n="booking.check">Verfügbarkeit prüfen</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
@@ -96,20 +103,20 @@
       <div class="booking-form hidden" id="form-anfragen">
         <div class="booking-fields">
           <div class="booking-field booking-field--wide">
-            <label for="name">Ihr Name</label>
+            <label for="inq-name" data-i18n="booking.name.label">Ihr Name</label>
             <div class="field-wrap">
-              <input type="text" id="name" name="name" placeholder="Max Mustermann">
+              <input type="text" id="inq-name" name="name" placeholder="Max Mustermann" data-i18n-placeholder="booking.name.placeholder">
             </div>
           </div>
           <div class="booking-field booking-field--wide">
-            <label for="email">E-Mail</label>
+            <label for="inq-email" data-i18n="booking.email.label">E-Mail</label>
             <div class="field-wrap">
-              <input type="email" id="email" name="email" placeholder="max@beispiel.at">
+              <input type="email" id="inq-email" name="email" placeholder="max@beispiel.at" data-i18n-placeholder="booking.email.placeholder">
             </div>
           </div>
         </div>
         <button class="booking-submit">
-          Anfrage senden
+          <span data-i18n="booking.send">Anfrage senden</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
@@ -123,12 +130,12 @@
     <div class="container">
       <div class="intro-grid">
         <div class="intro-heading-col">
-          <h1>Unser Chalet ist mehr als nur eine Unterkunft in den Vogesen.</h1>
+          <h1 data-i18n="intro.heading">Unser Chalet ist mehr als nur eine Unterkunft in den Vogesen.</h1>
         </div>
         <div class="intro-text-col">
-          <p>Dieses charmante Chalet in Rehaupal liegt eingebettet in die sanfte Natur der französischen Vogesen: ein Ort, an dem Ruhe, Ursprünglichkeit und echtes Wohlgefühl zusammenkommen. Umgeben von Wäldern und weiten Landschaften bietet das Haus einen Rückzugsort fernab vom Trubel, ohne dabei an Gemütlichkeit zu verlieren.</p>
-          <p>Mit viel Liebe zum Detail gestaltet, verbindet das Chalet traditionelle Elemente mit einem warmen, einladenden Ambiente. Hier steht das Gefühl von Geborgenheit, Authentizität und echter Erholung im Vordergrund.</p>
-          <p>Die klare Luft der Berge, die Stille der Natur und Zeit für sich selbst – all das macht dieses Chalet zu einem Ort für Menschen, die das Einfache und Schöne zu schätzen wissen.</p>
+          <p data-i18n="intro.p1">Dieses charmante Chalet in Rehaupal liegt eingebettet in die sanfte Natur der französischen Vogesen: ein Ort, an dem Ruhe, Ursprünglichkeit und echtes Wohlgefühl zusammenkommen. Umgeben von Wäldern und weiten Landschaften bietet das Haus einen Rückzugsort fernab vom Trubel, ohne dabei an Gemütlichkeit zu verlieren.</p>
+          <p data-i18n="intro.p2">Mit viel Liebe zum Detail gestaltet, verbindet das Chalet traditionelle Elemente mit einem warmen, einladenden Ambiente. Hier steht das Gefühl von Geborgenheit, Authentizität und echter Erholung im Vordergrund.</p>
+          <p data-i18n="intro.p3">Die klare Luft der Berge, die Stille der Natur und Zeit für sich selbst – all das macht dieses Chalet zu einem Ort für Menschen, die das Einfache und Schöne zu schätzen wissen.</p>
         </div>
       </div>
     </div>
@@ -146,7 +153,7 @@
   <!-- ===================== FEATURES + REVIEWS ===================== -->
   <section class="features-section">
     <div class="container">
-      <p class="features-lead">
+      <p class="features-lead" data-i18n="features.lead">
         Zwei Schlafzimmer, Ein großes Badezimmer, eine moderne Küche, geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen die Rehaupal Chalet zu etwas ganz Besonderem.
       </p>
 
@@ -163,9 +170,9 @@
           </div>
           <div class="review-score-line">
             <span class="review-score">9.8</span>
-            <span class="review-label">Außergewöhnlich</span>
+            <span class="review-label" data-i18n="review.exceptional">Außergewöhnlich</span>
           </div>
-          <div class="review-count">85 Bewertungen</div>
+          <div class="review-count" data-i18n="review.booking.count">85 Bewertungen</div>
           <div class="review-logo review-logo--booking">
             <span class="booking-logo-text">booking<span class="booking-dot">.</span>com</span>
           </div>
@@ -182,9 +189,9 @@
           </div>
           <div class="review-score-line">
             <span class="review-score">5</span>
-            <span class="review-label">Kreise</span>
+            <span class="review-label" data-i18n="review.circles">Kreise</span>
           </div>
-          <div class="review-count">Exzellent</div>
+          <div class="review-count" data-i18n="review.excellent">Exzellent</div>
           <div class="review-logo review-logo--ta">
             <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
               <circle cx="8" cy="16" r="7" fill="#34E0A1"/>
@@ -209,9 +216,9 @@
           </div>
           <div class="review-score-line">
             <span class="review-score">5.0</span>
-            <span class="review-label">Hervorragend</span>
+            <span class="review-label" data-i18n="review.outstanding">Hervorragend</span>
           </div>
-          <div class="review-count">Sehr gut bewertet</div>
+          <div class="review-count" data-i18n="review.google.count">Sehr gut bewertet</div>
           <div class="review-logo review-logo--google">
             <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -232,18 +239,18 @@
     <div class="container">
       <div class="quote-inner">
         <div class="quote-text-col">
-          <blockquote class="big-quote">
+          <blockquote class="big-quote" data-i18n-html="quote.main">
             Mit Liebe gemacht und<br>
             genau das spürt man.
           </blockquote>
-          <p class="quote-sub">
+          <p class="quote-sub" data-i18n-html="quote.sub">
             Für uns ist das Chalet Rehaupal nicht nur ein schönes Haus.<br>
             Es ist ein Stück Heimat, das wir mit Ihnen teilen möchten.
           </p>
         </div>
         <div class="quote-images-row">
           <div class="quote-img-item">
-            <img src="Pictures_Sel/20211009_114037.jpg" alt="Chalet Rehaupal – Innenbereich" loading="lazy">
+            <img src="Pictures_Sel/20211009_114014.jpg" alt="Chalet Rehaupal – Innenbereich" loading="lazy">
           </div>
           <div class="quote-img-item">
             <img src="Pictures_Sel/20211009_143138.jpg" alt="Chalet Rehaupal – Detail" loading="lazy">
@@ -259,9 +266,9 @@
   <!-- ===================== CTA ===================== -->
   <section class="cta-section">
     <div class="container">
-      <h2 class="cta-heading">Urlaub auf dem Chalet Rehaupal</h2>
-      <p class="cta-sub">Erleben Sie besondere Momente in unserem charmanten Chalet in den Vogesen.<br>Jetzt Verfügbarkeit prüfen und Ihren Traumurlaub sichern.</p>
-      <a href="#" class="cta-btn">Ja, ich will dort hin</a>
+      <h2 class="cta-heading" data-i18n="cta.heading">Urlaub auf dem Chalet Rehaupal</h2>
+      <p class="cta-sub" data-i18n-html="cta.sub">Erleben Sie besondere Momente in unserem charmanten Chalet in den Vogesen.<br>Jetzt Verfügbarkeit prüfen und Ihren Traumurlaub sichern.</p>
+      <a href="#" class="cta-btn" data-i18n="cta.btn">Ja, ich will dort hin</a>
     </div>
   </section>
 
@@ -271,13 +278,13 @@
       <div class="footer-grid">
 
         <div class="footer-col">
-          <h4 class="footer-heading">Chalet Rehaupal</h4>
+          <h4 class="footer-heading" data-i18n="footer.left.heading">Chalet Rehaupal</h4>
           <ul class="footer-links">
-            <li><a href="#">Das Chalet</a></li>
-            <li><a href="#">Zimmer &amp; Räume</a></li>
-            <li><a href="#">Ausstattung</a></li>
-            <li><a href="#">Lage &amp; Anreise</a></li>
-            <li><a href="#">Umgebung</a></li>
+            <li><a href="#" data-i18n="footer.link.chalet">Das Chalet</a></li>
+            <li><a href="#" data-i18n="footer.link.rooms">Zimmer &amp; Räume</a></li>
+            <li><a href="#" data-i18n="footer.link.amenities">Ausstattung</a></li>
+            <li><a href="#" data-i18n="footer.link.location">Lage &amp; Anreise</a></li>
+            <li><a href="#" data-i18n="footer.link.surroundings">Umgebung</a></li>
           </ul>
         </div>
 
@@ -290,7 +297,7 @@
             88640 Rehaupal<br>
             France
           </address>
-          <a href="tel:+352671161667" class="footer-phone">+352 671 161 667</a>
+          <a href="tel:+352671161667" class="footer-phone" id="footer-phone">+352 671 161 667</a>
           <div class="footer-socials">
             <a href="#" aria-label="Facebook" class="social-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -307,28 +314,209 @@
           </div>
         </div>
 
-        <div class="footer-col">
-          <h4 class="footer-heading">Kontakt</h4>
+        <div class="footer-col footer-col--right">
+          <h4 class="footer-heading" data-i18n="footer.right.heading">Kontakt</h4>
           <ul class="footer-links">
-            <li><a href="#">Buchungsanfrage</a></li>
-            <li><a href="#">Preise &amp; Verfügbarkeit</a></li>
-            <li><a href="#">Häufige Fragen</a></li>
-            <li><a href="#">Bewertungen</a></li>
-            <li><a href="#">Datenschutz</a></li>
-            <li><a href="#">Impressum</a></li>
+            <li><a href="#" data-i18n="footer.link.booking">Buchungsanfrage</a></li>
+            <li><a href="#" data-i18n="footer.link.prices">Preise &amp; Verfügbarkeit</a></li>
+            <li><a href="#" data-i18n="footer.link.faq">Häufige Fragen</a></li>
+            <li><a href="#" data-i18n="footer.link.reviews">Bewertungen</a></li>
+            <li><a href="#" data-i18n="footer.link.privacy">Datenschutz</a></li>
+            <li><a href="#" data-i18n="footer.link.imprint">Impressum</a></li>
           </ul>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Rehaupal Chalet. Alle Rechte vorbehalten.</p>
+        <p data-i18n="footer.copyright">&copy; 2026 Rehaupal Chalet. Alle Rechte vorbehalten.</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Mobile menu toggle
+    /* ===================== TRANSLATIONS ===================== */
+    const translations = {
+      de: {
+        'nav.photos':              'Fotos',
+        'nav.rent':                'Mieten',
+        'nav.contact':             'Kontakt',
+        'booking.book':            'Buchen',
+        'booking.inquire':         'Anfragen',
+        'booking.arrival':         'Ankunft',
+        'booking.departure':       'Abreise',
+        'booking.check':           'Verfügbarkeit prüfen',
+        'booking.send':            'Anfrage senden',
+        'booking.name.label':      'Ihr Name',
+        'booking.name.placeholder':'Max Mustermann',
+        'booking.email.label':     'E-Mail',
+        'booking.email.placeholder':'max@beispiel.de',
+        'intro.heading':           'Unser Chalet ist mehr als nur eine Unterkunft in den Vogesen.',
+        'intro.p1':                'Dieses charmante Chalet in Rehaupal liegt eingebettet in die sanfte Natur der französischen Vogesen: ein Ort, an dem Ruhe, Ursprünglichkeit und echtes Wohlgefühl zusammenkommen. Umgeben von Wäldern und weiten Landschaften bietet das Haus einen Rückzugsort fernab vom Trubel, ohne dabei an Gemütlichkeit zu verlieren.',
+        'intro.p2':                'Mit viel Liebe zum Detail gestaltet, verbindet das Chalet traditionelle Elemente mit einem warmen, einladenden Ambiente. Hier steht das Gefühl von Geborgenheit, Authentizität und echter Erholung im Vordergrund.',
+        'intro.p3':                'Die klare Luft der Berge, die Stille der Natur und Zeit für sich selbst – all das macht dieses Chalet zu einem Ort für Menschen, die das Einfache und Schöne zu schätzen wissen.',
+        'features.lead':           'Zwei Schlafzimmer, Ein großes Badezimmer, eine moderne Küche, geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen die Rehaupal Chalet zu etwas ganz Besonderem.',
+        'review.exceptional':      'Außergewöhnlich',
+        'review.booking.count':    '85 Bewertungen',
+        'review.circles':          'Kreise',
+        'review.excellent':        'Exzellent',
+        'review.outstanding':      'Hervorragend',
+        'review.google.count':     'Sehr gut bewertet',
+        'quote.main':              'Mit Liebe gemacht und<br>genau das spürt man.',
+        'quote.sub':               'Für uns ist das Chalet Rehaupal nicht nur ein schönes Haus.<br>Es ist ein Stück Heimat, das wir mit Ihnen teilen möchten.',
+        'cta.heading':             'Urlaub auf dem Chalet Rehaupal',
+        'cta.sub':                 'Erleben Sie besondere Momente in unserem charmanten Chalet in den Vogesen.<br>Jetzt Verfügbarkeit prüfen und Ihren Traumurlaub sichern.',
+        'cta.btn':                 'Ja, ich will dort hin',
+        'footer.left.heading':     'Chalet Rehaupal',
+        'footer.link.chalet':      'Das Chalet',
+        'footer.link.rooms':       'Zimmer & Räume',
+        'footer.link.amenities':   'Ausstattung',
+        'footer.link.location':    'Lage & Anreise',
+        'footer.link.surroundings':'Umgebung',
+        'footer.right.heading':    'Kontakt',
+        'footer.link.booking':     'Buchungsanfrage',
+        'footer.link.prices':      'Preise & Verfügbarkeit',
+        'footer.link.faq':         'Häufige Fragen',
+        'footer.link.reviews':     'Bewertungen',
+        'footer.link.privacy':     'Datenschutz',
+        'footer.link.imprint':     'Impressum',
+        'footer.copyright':        '© 2026 Rehaupal Chalet. Alle Rechte vorbehalten.',
+      },
+      en: {
+        'nav.photos':              'Photos',
+        'nav.rent':                'Rent',
+        'nav.contact':             'Contact',
+        'booking.book':            'Book',
+        'booking.inquire':         'Inquire',
+        'booking.arrival':         'Arrival',
+        'booking.departure':       'Departure',
+        'booking.check':           'Check availability',
+        'booking.send':            'Send inquiry',
+        'booking.name.label':      'Your name',
+        'booking.name.placeholder':'John Smith',
+        'booking.email.label':     'E-Mail',
+        'booking.email.placeholder':'john@example.com',
+        'intro.heading':           'Our chalet is more than just a place to stay in the Vosges.',
+        'intro.p1':                'This charming chalet in Rehaupal is nestled in the gentle nature of the French Vosges: a place where tranquillity, authenticity and genuine wellbeing come together. Surrounded by forests and wide landscapes, the house offers a retreat away from the hustle and bustle, without sacrificing comfort.',
+        'intro.p2':                'Designed with great attention to detail, the chalet combines traditional elements with a warm and inviting atmosphere. The feeling of security, authenticity and true relaxation takes centre stage.',
+        'intro.p3':                'The crisp mountain air, the silence of nature and time for yourself – all of this makes this chalet a place for those who appreciate the simple and beautiful things in life.',
+        'features.lead':           'Two bedrooms, one large bathroom, a modern kitchen, a spacious sauna and a large terrace with breathtaking views make Chalet Rehaupal truly exceptional.',
+        'review.exceptional':      'Exceptional',
+        'review.booking.count':    '85 reviews',
+        'review.circles':          'Circles',
+        'review.excellent':        'Excellent',
+        'review.outstanding':      'Outstanding',
+        'review.google.count':     'Highly rated',
+        'quote.main':              'Made with love,<br>and you can feel it.',
+        'quote.sub':               'For us, Chalet Rehaupal is not just a beautiful house.<br>It is a piece of home that we would like to share with you.',
+        'cta.heading':             'A stay at Chalet Rehaupal',
+        'cta.sub':                 'Experience special moments in our charming chalet in the Vosges.<br>Check availability now and secure your dream holiday.',
+        'cta.btn':                 'Yes, I want to go there',
+        'footer.left.heading':     'Chalet Rehaupal',
+        'footer.link.chalet':      'The Chalet',
+        'footer.link.rooms':       'Rooms & Spaces',
+        'footer.link.amenities':   'Amenities',
+        'footer.link.location':    'Location & Directions',
+        'footer.link.surroundings':'Surroundings',
+        'footer.right.heading':    'Contact',
+        'footer.link.booking':     'Booking inquiry',
+        'footer.link.prices':      'Prices & Availability',
+        'footer.link.faq':         'FAQ',
+        'footer.link.reviews':     'Reviews',
+        'footer.link.privacy':     'Privacy Policy',
+        'footer.link.imprint':     'Legal notice',
+        'footer.copyright':        '© 2026 Rehaupal Chalet. All rights reserved.',
+      },
+      fr: {
+        'nav.photos':              'Photos',
+        'nav.rent':                'Louer',
+        'nav.contact':             'Contact',
+        'booking.book':            'Réserver',
+        'booking.inquire':         'Demande',
+        'booking.arrival':         'Arrivée',
+        'booking.departure':       'Départ',
+        'booking.check':           'Vérifier disponibilité',
+        'booking.send':            'Envoyer la demande',
+        'booking.name.label':      'Votre nom',
+        'booking.name.placeholder':'Jean Dupont',
+        'booking.email.label':     'E-mail',
+        'booking.email.placeholder':'jean@exemple.fr',
+        'intro.heading':           'Notre chalet est bien plus qu\'un simple hébergement dans les Vosges.',
+        'intro.p1':                "Ce charmant chalet à Rehaupal est niché au cœur de la douce nature des Vosges françaises : un endroit où la tranquillité, l'authenticité et le vrai bien-être se rejoignent. Entouré de forêts et de vastes paysages, la maison offre un havre de paix loin de l'agitation, sans pour autant perdre son côté chaleureux.",
+        'intro.p2':                "Conçu avec une grande attention aux détails, le chalet allie éléments traditionnels à une atmosphère chaleureuse et accueillante. Ici, le sentiment de sécurité, d'authenticité et de vraie détente est au premier plan.",
+        'intro.p3':                "L'air pur de la montagne, le silence de la nature et du temps pour soi – tout cela fait de ce chalet un lieu pour ceux qui savent apprécier les choses simples et belles.",
+        'features.lead':           'Deux chambres, une grande salle de bain, une cuisine moderne, un spacieux sauna et une grande terrasse avec une vue époustouflante font du Chalet Rehaupal quelque chose de vraiment exceptionnel.',
+        'review.exceptional':      'Exceptionnel',
+        'review.booking.count':    '85 avis',
+        'review.circles':          'Cercles',
+        'review.excellent':        'Excellent',
+        'review.outstanding':      'Remarquable',
+        'review.google.count':     'Très bien noté',
+        'quote.main':              'Fait avec amour,<br>et ça se ressent.',
+        'quote.sub':               "Pour nous, le Chalet Rehaupal n'est pas seulement une belle maison.<br>C'est un morceau de chez soi que nous souhaitons partager avec vous.",
+        'cta.heading':             'Séjour au Chalet Rehaupal',
+        'cta.sub':                 'Vivez des moments exceptionnels dans notre charmant chalet dans les Vosges.<br>Vérifiez les disponibilités et réservez votre séjour de rêve.',
+        'cta.btn':                 'Oui, je veux y aller',
+        'footer.left.heading':     'Chalet Rehaupal',
+        'footer.link.chalet':      'Le Chalet',
+        'footer.link.rooms':       'Chambres & Espaces',
+        'footer.link.amenities':   'Équipements',
+        'footer.link.location':    'Situation & Accès',
+        'footer.link.surroundings':'Environnement',
+        'footer.right.heading':    'Contact',
+        'footer.link.booking':     'Demande de réservation',
+        'footer.link.prices':      'Tarifs & Disponibilités',
+        'footer.link.faq':         'Questions fréquentes',
+        'footer.link.reviews':     'Avis',
+        'footer.link.privacy':     'Confidentialité',
+        'footer.link.imprint':     'Mentions légales',
+        'footer.copyright':        '© 2026 Rehaupal Chalet. Tous droits réservés.',
+      }
+    };
+
+    /* ===================== LANGUAGE SWITCHER ===================== */
+    let currentLang = localStorage.getItem('rehaupal-lang') || 'de';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('rehaupal-lang', lang);
+      document.documentElement.lang = lang;
+
+      // Highlight active button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      const t = translations[lang];
+
+      // Plain text nodes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      // HTML nodes (contain <br> or entities)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      // Input placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (t[key] !== undefined) el.placeholder = t[key];
+      });
+    }
+
+    // Wire language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    // Init on load
+    setLanguage(currentLang);
+
+    /* ===================== MOBILE MENU ===================== */
     const toggle = document.getElementById('mobile-toggle');
     const nav = document.getElementById('main-nav');
     toggle.addEventListener('click', () => {
@@ -338,7 +526,7 @@
       nav.classList.toggle('is-open');
     });
 
-    // Booking tabs
+    /* ===================== BOOKING TABS ===================== */
     const tabs = document.querySelectorAll('.booking-tab');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
@@ -350,20 +538,11 @@
       });
     });
 
-    // Header scroll effect
+    /* ===================== HEADER SCROLL ===================== */
     const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
-
-    // Video placeholder click
-    const videoPlaceholder = document.querySelector('.video-placeholder');
-    if (videoPlaceholder) {
-      videoPlaceholder.addEventListener('click', () => {
-        videoPlaceholder.innerHTML = '<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen style="width:100%;height:100%;position:absolute;top:0;left:0;"></iframe>';
-        videoPlaceholder.style.cursor = 'default';
-      });
-    }
   </script>
 </body>
 </html>

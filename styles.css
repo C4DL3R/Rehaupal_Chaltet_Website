@@ -73,11 +73,14 @@ img { display: block; max-width: 100%; }
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 100%;
   max-width: var(--max-w);
   margin-inline: auto;
   padding-inline: 30px;
+}
+
+.main-nav {
+  margin-left: auto;
 }
 
 /* Logo */
@@ -125,6 +128,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-left: 28px;
 }
 
 .header-phone {
@@ -143,6 +147,44 @@ img { display: block; max-width: 100%; }
   opacity: 1;
   background-color: rgba(255,255,255,0.1);
   color: var(--white);
+}
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.45);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  padding: 3px 5px;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: rgba(255,255,255,0.85);
+}
+
+.lang-btn.active {
+  color: var(--white);
+  border-bottom-color: rgba(255,255,255,0.55);
+}
+
+.lang-sep {
+  color: rgba(255,255,255,0.2);
+  font-size: 10px;
+  line-height: 1;
+  user-select: none;
 }
 
 /* Mobile toggle */
@@ -629,6 +671,14 @@ img { display: block; max-width: 100%; }
   align-items: start;
 }
 
+.footer-col--right {
+  text-align: right;
+}
+
+.footer-col--right .footer-links a {
+  display: block;
+}
+
 .footer-heading {
   font-size: 11px;
   font-weight: 600;
@@ -738,8 +788,9 @@ img { display: block; max-width: 100%; }
 @media (max-width: 992px) {
   .intro-grid { grid-template-columns: 1fr; gap: 36px; }
   .reviews-row { grid-template-columns: 1fr; gap: 16px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-col--center { grid-column: 1 / -1; order: -1; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-col--center { order: -1; }
+  .footer-col--right { text-align: left; }
 }
 
 /* Mobile */
@@ -816,6 +867,7 @@ img { display: block; max-width: 100%; }
   }
 
   .footer-col--center { order: -1; }
+  .footer-col--right { text-align: left; }
 }
 
 @media (max-width: 480px) {
