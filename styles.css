@@ -95,7 +95,10 @@ img { display: block; max-width: 100%; }
 .logo-img {
   height: 44px;
   width: auto;
+  max-width: 160px;
   display: block;
+  object-fit: contain;
+  flex-shrink: 0;
   filter: invert(1);
 }
 
@@ -808,6 +811,11 @@ img { display: block; max-width: 100%; }
 
 /* Mobile */
 @media (max-width: 768px) {
+  .logo-img {
+    height: 32px;
+    max-width: 120px;
+  }
+
   .mobile-toggle { display: flex; }
 
   .main-nav {
