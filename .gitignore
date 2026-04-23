@@ -1,0 +1,9 @@
+# Reference/source files not used by the website
+www.brandleit.at_.png
+Rehaupal_Text.ai
+
+# Unused images in Pictures_Sel
+Pictures_Sel/WhatsApp*
+
+# macOS
+.DS_Store

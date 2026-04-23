@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rehaupal – Chalet Vosges</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <img src="Rehaupal_Text.gif" alt="Rehaupal – Chalet Vosges" class="logo-img">
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="#">Fotos</a></li>
+          <li><a href="#">Mieten</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a href="tel:+4365127890" class="header-phone" aria-label="Anrufen">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.57 21 3 13.43 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.01L6.6 10.8z"/>
+          </svg>
+        </a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img
+        src="landscape-hills-covered-greenery-fog-sunset-countryside.jpg"
+        alt="Chalet Rehaupal in den Vogesen"
+        class="hero-img"
+        loading="eager"
+      >
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="booking-widget">
+      <div class="booking-tabs">
+        <button class="booking-tab active" data-tab="buchen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Buchen
+        </button>
+        <button class="booking-tab" data-tab="anfragen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Anfragen
+        </button>
+      </div>
+
+      <div class="booking-form" id="form-buchen">
+        <div class="booking-fields">
+          <div class="booking-field">
+            <label for="arrival">Ankunft</label>
+            <div class="field-wrap">
+              <input type="date" id="arrival" name="arrival">
+            </div>
+          </div>
+          <div class="booking-divider"></div>
+          <div class="booking-field">
+            <label for="departure">Abreise</label>
+            <div class="field-wrap">
+              <input type="date" id="departure" name="departure">
+            </div>
+          </div>
+        </div>
+        <button class="booking-submit">
+          Verfügbarkeit prüfen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="booking-form hidden" id="form-anfragen">
+        <div class="booking-fields">
+          <div class="booking-field booking-field--wide">
+            <label for="name">Ihr Name</label>
+            <div class="field-wrap">
+              <input type="text" id="name" name="name" placeholder="Max Mustermann">
+            </div>
+          </div>
+          <div class="booking-field booking-field--wide">
+            <label for="email">E-Mail</label>
+            <div class="field-wrap">
+              <input type="email" id="email" name="email" placeholder="max@beispiel.at">
+            </div>
+          </div>
+        </div>
+        <button class="booking-submit">
+          Anfrage senden
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO ===================== -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-heading-col">
+          <h1>Unser Chalet ist mehr als nur eine Unterkunft in den Vogesen.</h1>
+        </div>
+        <div class="intro-text-col">
+          <p>Dieses charmante Chalet in Rehaupal liegt eingebettet in die sanfte Natur der französischen Vogesen: ein Ort, an dem Ruhe, Ursprünglichkeit und echtes Wohlgefühl zusammenkommen. Umgeben von Wäldern und weiten Landschaften bietet das Haus einen Rückzugsort fernab vom Trubel, ohne dabei an Gemütlichkeit zu verlieren.</p>
+          <p>Mit viel Liebe zum Detail gestaltet, verbindet das Chalet traditionelle Elemente mit einem warmen, einladenden Ambiente. Hier steht das Gefühl von Geborgenheit, Authentizität und echter Erholung im Vordergrund.</p>
+          <p>Die klare Luft der Berge, die Stille der Natur und Zeit für sich selbst – all das macht dieses Chalet zu einem Ort für Menschen, die das Einfache und Schöne zu schätzen wissen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VIDEO ===================== -->
+  <section class="video-section">
+    <div class="video-container">
+      <div class="video-photo">
+        <img src="Pictures_Sel/20211009_142615.jpg" alt="Chalet Rehaupal – Außenansicht" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURES + REVIEWS ===================== -->
+  <section class="features-section">
+    <div class="container">
+      <p class="features-lead">
+        Zwei Schlafzimmer, Ein großes Badezimmer, eine moderne Küche, geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen die Rehaupal Chalet zu etwas ganz Besonderem.
+      </p>
+
+      <div class="reviews-row">
+
+        <!-- Booking.com -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="review-score-line">
+            <span class="review-score">9.8</span>
+            <span class="review-label">Außergewöhnlich</span>
+          </div>
+          <div class="review-count">85 Bewertungen</div>
+          <div class="review-logo review-logo--booking">
+            <span class="booking-logo-text">booking<span class="booking-dot">.</span>com</span>
+          </div>
+        </div>
+
+        <!-- TripAdvisor -->
+        <div class="review-card">
+          <div class="review-circles">
+            <span class="ta-circle full"></span>
+            <span class="ta-circle full"></span>
+            <span class="ta-circle full"></span>
+            <span class="ta-circle full"></span>
+            <span class="ta-circle full"></span>
+          </div>
+          <div class="review-score-line">
+            <span class="review-score">5</span>
+            <span class="review-label">Kreise</span>
+          </div>
+          <div class="review-count">Exzellent</div>
+          <div class="review-logo review-logo--ta">
+            <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="8" cy="16" r="7" fill="#34E0A1"/>
+              <circle cx="24" cy="16" r="7" fill="#34E0A1"/>
+              <circle cx="8" cy="16" r="3" fill="#fff"/>
+              <circle cx="24" cy="16" r="3" fill="#fff"/>
+              <circle cx="8" cy="16" r="1.5" fill="#000"/>
+              <circle cx="24" cy="16" r="1.5" fill="#000"/>
+            </svg>
+            <span>Tripadvisor</span>
+          </div>
+        </div>
+
+        <!-- Google -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB800" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="review-score-line">
+            <span class="review-score">5.0</span>
+            <span class="review-label">Hervorragend</span>
+          </div>
+          <div class="review-count">Sehr gut bewertet</div>
+          <div class="review-logo review-logo--google">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span>Google</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUOTE ===================== -->
+  <section class="quote-section">
+    <div class="container">
+      <div class="quote-inner">
+        <div class="quote-text-col">
+          <blockquote class="big-quote">
+            Mit Liebe gemacht und<br>
+            genau das spürt man.
+          </blockquote>
+          <p class="quote-sub">
+            Für uns ist das Chalet Rehaupal nicht nur ein schönes Haus.<br>
+            Es ist ein Stück Heimat, das wir mit Ihnen teilen möchten.
+          </p>
+        </div>
+        <div class="quote-images-row">
+          <div class="quote-img-item">
+            <img src="Pictures_Sel/20211009_114037.jpg" alt="Chalet Rehaupal – Innenbereich" loading="lazy">
+          </div>
+          <div class="quote-img-item">
+            <img src="Pictures_Sel/20211009_143138.jpg" alt="Chalet Rehaupal – Detail" loading="lazy">
+          </div>
+          <div class="quote-img-item">
+            <img src="Pictures_Sel/20211009_143354.jpg" alt="Chalet Rehaupal – Außenansicht" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-heading">Urlaub auf dem Chalet Rehaupal</h2>
+      <p class="cta-sub">Erleben Sie besondere Momente in unserem charmanten Chalet in den Vogesen.<br>Jetzt Verfügbarkeit prüfen und Ihren Traumurlaub sichern.</p>
+      <a href="#" class="cta-btn">Ja, ich will dort hin</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Chalet Rehaupal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Das Chalet</a></li>
+            <li><a href="#">Zimmer &amp; Räume</a></li>
+            <li><a href="#">Ausstattung</a></li>
+            <li><a href="#">Lage &amp; Anreise</a></li>
+            <li><a href="#">Umgebung</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-col--center">
+          <a href="/" class="footer-logo" aria-label="Chalet Rehaupal Startseite">
+            <img src="Rehaupal_Text.gif" alt="Rehaupal – Chalet Vosges" class="footer-logo-img">
+          </a>
+          <address class="footer-address">
+            5, Chemin des Spaxes<br>
+            88640 Rehaupal<br>
+            France
+          </address>
+          <a href="tel:+352671161667" class="footer-phone">+352 671 161 667</a>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Kontakt</h4>
+          <ul class="footer-links">
+            <li><a href="#">Buchungsanfrage</a></li>
+            <li><a href="#">Preise &amp; Verfügbarkeit</a></li>
+            <li><a href="#">Häufige Fragen</a></li>
+            <li><a href="#">Bewertungen</a></li>
+            <li><a href="#">Datenschutz</a></li>
+            <li><a href="#">Impressum</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rehaupal Chalet. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.getElementById('mobile-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.classList.toggle('is-active');
+      nav.classList.toggle('is-open');
+    });
+
+    // Booking tabs
+    const tabs = document.querySelectorAll('.booking-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.booking-form').forEach(f => f.classList.add('hidden'));
+        const target = document.getElementById('form-' + tab.dataset.tab);
+        if (target) target.classList.remove('hidden');
+      });
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Video placeholder click
+    const videoPlaceholder = document.querySelector('.video-placeholder');
+    if (videoPlaceholder) {
+      videoPlaceholder.addEventListener('click', () => {
+        videoPlaceholder.innerHTML = '<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen style="width:100%;height:100%;position:absolute;top:0;left:0;"></iframe>';
+        videoPlaceholder.style.cursor = 'default';
+      });
+    }
+  </script>
+</body>
+</html>
