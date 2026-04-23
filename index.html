@@ -577,14 +577,13 @@
       header.style.height = Math.round(lerp(expandedH, collapsedH, progress)) + 'px';
       header.classList.toggle('scrolled', progress >= 1);
 
-      if (progress >= 1) {
-        header.style.background = 'rgba(22,26,17,1)';
-      } else {
-        const alpha = (0.9 + 0.1 * progress).toFixed(2);
-        const stop  = Math.round(50 + 50 * progress);
-        header.style.background =
-          `linear-gradient(to bottom, rgba(22,26,17,${alpha}) 0%, rgba(22,26,17,${alpha}) ${stop}%, rgba(22,26,17,0) 100%)`;
-      }
+      // Always keep gradient — switching to a flat rgba() causes a blink.
+      // End-stop alpha tracks progress so it becomes fully opaque at scroll end.
+      const alpha    = (0.9 + 0.1 * progress).toFixed(3);
+      const stop     = Math.round(50 + 50 * progress);
+      const endAlpha = progress.toFixed(3);
+      header.style.background =
+        `linear-gradient(to bottom, rgba(22,26,17,${alpha}) 0%, rgba(22,26,17,${alpha}) ${stop}%, rgba(22,26,17,${endAlpha}) 100%)`;
 
       // Logo
       logoImg.style.height   = lerp(LOGO_H_C,  LOGO_H_E,  inv).toFixed(1) + 'px';
