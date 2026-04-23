@@ -92,7 +92,7 @@
             </div>
           </div>
         </div>
-        <button class="booking-submit">
+        <button class="booking-submit" id="check-availability-btn">
           <span data-i18n="booking.check">Verfügbarkeit prüfen</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
@@ -154,7 +154,7 @@
   <section class="features-section">
     <div class="container">
       <p class="features-lead" data-i18n="features.lead">
-        Zwei Schlafzimmer, Ein großes Badezimmer, eine moderne Küche, geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen die Rehaupal Chalet zu etwas ganz Besonderem.
+        Drei Schlafzimmer, ein großes Badezimmer, eine moderne Küche, eine geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen das Rehaupal Chalet zu etwas ganz Besonderem.
       </p>
 
       <div class="reviews-row">
@@ -355,7 +355,7 @@
         'intro.p1':                'Dieses charmante Chalet in Rehaupal liegt eingebettet in die sanfte Natur der französischen Vogesen: ein Ort, an dem Ruhe, Ursprünglichkeit und echtes Wohlgefühl zusammenkommen. Umgeben von Wäldern und weiten Landschaften bietet das Haus einen Rückzugsort fernab vom Trubel, ohne dabei an Gemütlichkeit zu verlieren.',
         'intro.p2':                'Mit viel Liebe zum Detail gestaltet, verbindet das Chalet traditionelle Elemente mit einem warmen, einladenden Ambiente. Hier steht das Gefühl von Geborgenheit, Authentizität und echter Erholung im Vordergrund.',
         'intro.p3':                'Die klare Luft der Berge, die Stille der Natur und Zeit für sich selbst – all das macht dieses Chalet zu einem Ort für Menschen, die das Einfache und Schöne zu schätzen wissen.',
-        'features.lead':           'Zwei Schlafzimmer, Ein großes Badezimmer, eine moderne Küche, geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen die Rehaupal Chalet zu etwas ganz Besonderem.',
+        'features.lead':           'Drei Schlafzimmer, ein großes Badezimmer, eine moderne Küche, eine geräumige Sauna und eine große Terrasse mit atemberaubendem Blick machen das Rehaupal Chalet zu etwas ganz Besonderem.',
         'review.exceptional':      'Außergewöhnlich',
         'review.booking.count':    '85 Bewertungen',
         'review.circles':          'Kreise',
@@ -366,7 +366,7 @@
         'quote.sub':               'Für uns ist das Chalet Rehaupal nicht nur ein schönes Haus.<br>Es ist ein Stück Heimat, das wir mit Ihnen teilen möchten.',
         'cta.heading':             'Urlaub auf dem Chalet Rehaupal',
         'cta.sub':                 'Erleben Sie besondere Momente in unserem charmanten Chalet in den Vogesen.<br>Jetzt Verfügbarkeit prüfen und Ihren Traumurlaub sichern.',
-        'cta.btn':                 'Ja, ich will dort hin',
+        'cta.btn':                 'Ja, ich will dorthin',
         'footer.left.heading':     'Chalet Rehaupal',
         'footer.link.chalet':      'Das Chalet',
         'footer.link.rooms':       'Zimmer & Räume',
@@ -400,7 +400,7 @@
         'intro.p1':                'This charming chalet in Rehaupal is nestled in the gentle nature of the French Vosges: a place where tranquillity, authenticity and genuine wellbeing come together. Surrounded by forests and wide landscapes, the house offers a retreat away from the hustle and bustle, without sacrificing comfort.',
         'intro.p2':                'Designed with great attention to detail, the chalet combines traditional elements with a warm and inviting atmosphere. The feeling of security, authenticity and true relaxation takes centre stage.',
         'intro.p3':                'The crisp mountain air, the silence of nature and time for yourself – all of this makes this chalet a place for those who appreciate the simple and beautiful things in life.',
-        'features.lead':           'Two bedrooms, one large bathroom, a modern kitchen, a spacious sauna and a large terrace with breathtaking views make Chalet Rehaupal truly exceptional.',
+        'features.lead':           'Three bedrooms, one large bathroom, a modern kitchen, a spacious sauna and a large terrace with breathtaking views make Chalet Rehaupal truly exceptional.',
         'review.exceptional':      'Exceptional',
         'review.booking.count':    '85 reviews',
         'review.circles':          'Circles',
@@ -435,7 +435,7 @@
         'booking.inquire':         'Demande',
         'booking.arrival':         'Arrivée',
         'booking.departure':       'Départ',
-        'booking.check':           'Vérifier disponibilité',
+        'booking.check':           'Vérifier la disponibilité',
         'booking.send':            'Envoyer la demande',
         'booking.name.label':      'Votre nom',
         'booking.name.placeholder':'Jean Dupont',
@@ -445,7 +445,7 @@
         'intro.p1':                "Ce charmant chalet à Rehaupal est niché au cœur de la douce nature des Vosges françaises : un endroit où la tranquillité, l'authenticité et le vrai bien-être se rejoignent. Entouré de forêts et de vastes paysages, la maison offre un havre de paix loin de l'agitation, sans pour autant perdre son côté chaleureux.",
         'intro.p2':                "Conçu avec une grande attention aux détails, le chalet allie éléments traditionnels à une atmosphère chaleureuse et accueillante. Ici, le sentiment de sécurité, d'authenticité et de vraie détente est au premier plan.",
         'intro.p3':                "L'air pur de la montagne, le silence de la nature et du temps pour soi – tout cela fait de ce chalet un lieu pour ceux qui savent apprécier les choses simples et belles.",
-        'features.lead':           'Deux chambres, une grande salle de bain, une cuisine moderne, un spacieux sauna et une grande terrasse avec une vue époustouflante font du Chalet Rehaupal quelque chose de vraiment exceptionnel.',
+        'features.lead':           'Trois chambres, une grande salle de bain, une cuisine moderne, un spacieux sauna et une grande terrasse avec une vue époustouflante font du Chalet Rehaupal quelque chose de vraiment exceptionnel.',
         'review.exceptional':      'Exceptionnel',
         'review.booking.count':    '85 avis',
         'review.circles':          'Cercles',
@@ -536,6 +536,17 @@
         const target = document.getElementById('form-' + tab.dataset.tab);
         if (target) target.classList.remove('hidden');
       });
+    });
+
+    /* ===================== AIRBNB BOOKING ===================== */
+    document.getElementById('check-availability-btn').addEventListener('click', () => {
+      const arrival   = document.getElementById('arrival').value;
+      const departure = document.getElementById('departure').value;
+      const base = 'https://www.airbnb.de/rooms/53041871';
+      const url  = arrival && departure
+        ? `${base}?check_in=${arrival}&check_out=${departure}`
+        : base;
+      window.open(url, '_blank');
     });
 
     /* ===================== HEADER SCROLL ===================== */
