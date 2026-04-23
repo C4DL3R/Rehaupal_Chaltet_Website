@@ -918,7 +918,7 @@ img { display: block; max-width: 100%; }
 
   .reviews-row { grid-template-columns: 1fr; }
 
-  .quote-section { padding: 64px 0 0; }
+  .quote-section { padding: 64px 0 48px; }
   .big-quote { font-size: 26px; }
 
   .quote-images-row { grid-template-columns: 1fr; }
