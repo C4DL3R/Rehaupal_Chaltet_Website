@@ -420,11 +420,24 @@ img { display: block; max-width: 100%; }
    VIDEO
    ============================================================ */
 .video-section {
-  background: #000;
+  position: relative;
+  overflow: hidden;
   padding: 56px 30px;
 }
 
+.video-section::before {
+  content: '';
+  position: absolute;
+  inset: -60px;
+  background: url('Pictures_Sel/20211009_142615.jpg') center / cover no-repeat;
+  filter: blur(28px) brightness(0.55);
+  transform: scale(1.15);
+  z-index: 0;
+}
+
 .video-container {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
   margin-inline: auto;
 }
@@ -538,14 +551,14 @@ img { display: block; max-width: 100%; }
   color: var(--text-medium);
 }
 
-.booking-logo-text {
+.airbnb-logo-text {
   font-size: 15px;
   font-weight: 600;
-  color: #003580;
+  color: #FF385C;
   letter-spacing: -0.3px;
 }
 
-.booking-dot { color: #0071c2; }
+.review-logo--airbnb { gap: 7px; }
 
 .review-logo--ta span { font-size: 14px; font-weight: 500; color: #00aa6c; }
 .review-logo--google span { font-size: 14px; font-weight: 500; color: #5f6368; }
