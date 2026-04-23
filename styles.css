@@ -821,12 +821,20 @@ img { display: block; max-width: 100%; }
   }
 
   /* Hide header lang switcher, show it inside the menu instead */
-  .header-inner { display: flex; }
-  .header-right { margin-left: auto; justify-self: auto; }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    grid-template-columns: none;
+  }
+  .header-right {
+    margin-left: auto;
+    justify-self: auto;
+  }
   .header-right .lang-switcher { display: none; }
 
   .lang-switcher--mobile {
     display: flex;
+    justify-content: center;
     padding: 24px 0 8px;
     border-top: 1px solid rgba(255,255,255,0.1);
     margin-top: 16px;
