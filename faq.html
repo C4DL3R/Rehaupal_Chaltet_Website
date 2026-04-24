@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Häufige Fragen – Rehaupal Chalet Vosges</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .site-header {
+      height: var(--header-h) !important;
+      background: var(--header-bg) !important;
+    }
+    .main-nav, .header-right { opacity: 1 !important; }
+
+    /* ── Page ── */
+    .faq-page {
+      padding-top: calc(var(--header-h) + 64px);
+      padding-bottom: 96px;
+    }
+
+    .faq-page-heading {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .faq-page-sub {
+      font-size: 17px;
+      color: var(--text-medium);
+      font-weight: 300;
+      margin-bottom: 56px;
+    }
+
+    /* ── Layout ── */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* ── Category nav ── */
+    .faq-nav {
+      position: sticky;
+      top: calc(var(--header-h) + 24px);
+    }
+
+    .faq-nav-item {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      padding: 8px 0;
+      border-left: 2px solid transparent;
+      padding-left: 14px;
+      transition: color var(--transition), border-color var(--transition);
+      cursor: pointer;
+    }
+
+    .faq-nav-item:hover,
+    .faq-nav-item.is-active {
+      color: var(--olive-primary);
+      border-left-color: var(--olive-primary);
+      opacity: 1;
+    }
+
+    /* ── Sections ── */
+    .faq-sections {
+      min-width: 0;
+    }
+
+    .faq-section {
+      margin-bottom: 56px;
+    }
+
+    .faq-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--olive-primary);
+      margin-bottom: 20px;
+    }
+
+    /* ── Accordion items ── */
+    .faq-item {
+      border-bottom: 1px solid #eee;
+    }
+
+    .faq-item:first-of-type {
+      border-top: 1px solid #eee;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-dark);
+      transition: color var(--transition);
+    }
+
+    .faq-question:hover { color: var(--olive-primary); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition), transform 0.3s ease;
+      color: #999;
+    }
+
+    .faq-item.is-open .faq-icon {
+      border-color: var(--olive-primary);
+      color: var(--olive-primary);
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding-bottom: 20px;
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--text-medium);
+      font-weight: 300;
+    }
+
+    .faq-item.is-open .faq-answer { display: block; }
+
+    .faq-answer ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+      margin-top: 10px;
+    }
+
+    .faq-answer ul li {
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+      font-size: 15px;
+      color: var(--text-medium);
+    }
+
+    .faq-answer ul li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--olive-primary);
+      font-weight: 700;
+    }
+
+    .faq-answer .note {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: #f8f7f2;
+      border-left: 3px solid var(--olive-primary);
+      font-size: 14px;
+      border-radius: 0 3px 3px 0;
+    }
+
+    @media (max-width: 768px) {
+      .faq-page { padding-top: calc(var(--header-h) + 40px); }
+      .faq-layout { grid-template-columns: 1fr; gap: 0; }
+      .faq-nav { display: none; }
+      .faq-answer ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header scrolled" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="Rehaupal_Text_US.gif" alt="Rehaupal – Chalet Vosges" class="logo-img">
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="fotos.html" data-i18n="nav.photos">Fotos</a></li>
+          <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="nav.rent">Mieten</a></li>
+          <li><a href="lage.html" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+        <div class="lang-switcher lang-switcher--mobile">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENT ===================== -->
+  <main class="faq-page">
+    <div class="container">
+
+      <h1 class="faq-page-heading" data-i18n="faq.heading">Häufige Fragen</h1>
+      <p class="faq-page-sub" data-i18n="faq.sub">Alles, was Sie über das Chalet Rehaupal wissen müssen.</p>
+
+      <div class="faq-layout">
+
+        <!-- Sticky nav -->
+        <nav class="faq-nav" aria-label="Kategorien">
+          <a class="faq-nav-item is-active" href="#das-chalet" data-i18n="faq.nav.chalet">Das Chalet</a>
+          <a class="faq-nav-item" href="#schlafzimmer" data-i18n="faq.nav.bedrooms">Schlafzimmer</a>
+          <a class="faq-nav-item" href="#ausstattung" data-i18n="faq.nav.amenities">Ausstattung</a>
+          <a class="faq-nav-item" href="#kueche" data-i18n="faq.nav.kitchen">Küche</a>
+          <a class="faq-nav-item" href="#aussen" data-i18n="faq.nav.outdoor">Außenbereiche</a>
+          <a class="faq-nav-item" href="#anreise" data-i18n="faq.nav.arrival">Anreise</a>
+          <a class="faq-nav-item" href="#regeln" data-i18n="faq.nav.rules">Regeln</a>
+        </nav>
+
+        <div class="faq-sections">
+
+          <!-- ── Das Chalet ── -->
+          <section class="faq-section" id="das-chalet">
+            <h2 class="faq-section-title" data-i18n="faq.nav.chalet">Das Chalet</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.about">Was ist das Chalet Rehaupal?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.about">Das Vosges-Chalet ist ein gemütliches Holzchalet im alpinen Stil, neu eingerichtet und mit zwei privaten Saunen ausgestattet – einer Biosauna im Garten (bis 70 °C) und einer Sauna im Inneren. Es liegt mitten in der Natur der französischen Vogesen, 15 bis 20 Minuten von Gérardmer mit seinen alpinen Skipisten entfernt.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.sauna">Wie sind die Saunen?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.sauna">Das Chalet verfügt über zwei private Saunen: eine Innen-Sauna sowie eine große Biosauna im Garten, ca. 30 m vom Chalet entfernt. Die Biosauna ist eine Niedrigtemperatursauna (55–70 °C) mit einem angeschlossenen Ruheraum und Blick ins Tal. Beide Saunen stehen ausschließlich den Gästen zur Verfügung.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.heating">Wie wird das Chalet geheizt?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.heating">Das Chalet wird über den Kaminofen im Wohnbereich sowie über elektrische Heizkörper in allen Zimmern beheizt. Holz für den Kamin ist vor Ort verfügbar.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.location">Wie weit ist es bis Gérardmer?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.location">Das Chalet liegt 15 bis 20 Fahrminuten von Gérardmer entfernt, das alpine Skipisten sowie einen schönen See bietet. Der nächste Bahnhof befindet sich in Épinal (TGV-Anschluss), ca. 25 Minuten mit dem Auto.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Schlafzimmer ── -->
+          <section class="faq-section" id="schlafzimmer">
+            <h2 class="faq-section-title" data-i18n="faq.nav.bedrooms">Schlafzimmer</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.beds">Wie sind die Schlafzimmer ausgestattet?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.beds">Das Chalet hat 3 Schlafzimmer:</p>
+                <ul>
+                  <li data-i18n="faq.a.bed1">Schlafzimmer 1: Doppelbett (160 cm)</li>
+                  <li data-i18n="faq.a.bed2">Schlafzimmer 2: Schlafsofa (140 cm)</li>
+                  <li data-i18n="faq.a.bed3">Schlafzimmer 3: 2 Einzelbetten (90 cm)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.linen">Ist Bettwäsche inklusive?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.linen">Bettwäsche ist nicht im Mietpreis enthalten und kann vor Ort gemietet werden. Der Preis beträgt 10 € pro Person und Aufenthalt. Zusätzliche Kissen und Decken sind verfügbar.</p>
+                <div class="note" data-i18n="faq.a.linen.note">Tipp: Bringen Sie Ihre eigene Bettwäsche mit, um Kosten zu sparen.</div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.washing">Gibt es eine Waschmaschine?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.washing">Ja, eine Waschmaschine und ein Wäscheständer stehen zur Verfügung. Ein Trockner ist nicht vorhanden.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Ausstattung ── -->
+          <section class="faq-section" id="ausstattung">
+            <h2 class="faq-section-title" data-i18n="faq.nav.amenities">Ausstattung</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.amenities">Was ist im Chalet enthalten?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <ul>
+                  <li data-i18n="faq.amenity.wifi">WLAN (inklusive)</li>
+                  <li data-i18n="faq.amenity.tv">Fernseher</li>
+                  <li data-i18n="faq.amenity.sauna">Private Sauna (innen &amp; außen)</li>
+                  <li data-i18n="faq.amenity.fireplace">Kaminofen</li>
+                  <li data-i18n="faq.amenity.heating">Elektrische Heizung</li>
+                  <li data-i18n="faq.amenity.washer">Waschmaschine</li>
+                  <li data-i18n="faq.amenity.hairdryer">Föhn</li>
+                  <li data-i18n="faq.amenity.boardgames">Brettspiele</li>
+                  <li data-i18n="faq.amenity.workspace">Arbeitsplatz (mit Tür)</li>
+                  <li data-i18n="faq.amenity.smokedetector">Rauchmelder</li>
+                  <li data-i18n="faq.amenity.firstaid">Erste-Hilfe-Set</li>
+                  <li data-i18n="faq.amenity.pillows">Zusätzliche Kissen &amp; Decken</li>
+                </ul>
+                <div class="note" data-i18n="faq.amenity.note">Nicht verfügbar: Trockner, Klimaanlage, Kohlenmonoxidmelder, Überwachungskameras.</div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.wifi">Gibt es WLAN?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.wifi">Ja, WLAN ist kostenlos und steht in einem Raum mit eigener Tür zur Verfügung, ideal auch zum Arbeiten.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.view">Welchen Ausblick hat das Chalet?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.view">Das Chalet bietet einen malerischen Blick in den privaten Garten sowie auf die umliegenden Berge der Vogesen. Die Biosauna im Garten hat einen besonderen Ruheraum mit Blick ins Tal.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Küche ── -->
+          <section class="faq-section" id="kueche">
+            <h2 class="faq-section-title" data-i18n="faq.nav.kitchen">Küche</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.kitchen">Wie ist die Küche ausgestattet?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.kitchen.intro">Die vollausgestattete Küche ermöglicht das selbstständige Kochen und Zubereiten von Mahlzeiten.</p>
+                <ul>
+                  <li data-i18n="faq.k.fridge">Kühlschrank</li>
+                  <li data-i18n="faq.k.microwave">Mikrowelle</li>
+                  <li data-i18n="faq.k.oven">Backofen &amp; Herd</li>
+                  <li data-i18n="faq.k.dishwasher">Geschirrspüler</li>
+                  <li data-i18n="faq.k.kettle">Wasserkocher</li>
+                  <li data-i18n="faq.k.coffee">Kaffeemaschine</li>
+                  <li data-i18n="faq.k.toaster">Toaster</li>
+                  <li data-i18n="faq.k.blender">Standmixer</li>
+                  <li data-i18n="faq.k.pots">Töpfe, Pfannen &amp; Grundgewürze</li>
+                  <li data-i18n="faq.k.dishes">Geschirr &amp; Besteck</li>
+                  <li data-i18n="faq.k.bbq">Grill &amp; Grillbesteck</li>
+                  <li data-i18n="faq.k.table">Esstisch</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Außenbereiche ── -->
+          <section class="faq-section" id="aussen">
+            <h2 class="faq-section-title" data-i18n="faq.nav.outdoor">Außenbereiche</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.outdoor">Was gibt es draußen?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <ul>
+                  <li data-i18n="faq.o.garden">Privater Garten</li>
+                  <li data-i18n="faq.o.terrace">Balkon / Terrasse</li>
+                  <li data-i18n="faq.o.dining">Essbereich im Freien</li>
+                  <li data-i18n="faq.o.firepit">Feuerstelle</li>
+                  <li data-i18n="faq.o.bbq">Grill</li>
+                  <li data-i18n="faq.o.sauna">Biosauna (30 m vom Chalet, privat)</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Anreise ── -->
+          <section class="faq-section" id="anreise">
+            <h2 class="faq-section-title" data-i18n="faq.nav.arrival">Anreise</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.checkin">Wie funktioniert der Check-in?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.checkin">Der Check-in erfolgt eigenständig über eine Schlüsselbox. Sie erhalten den Code vorab. Ein persönlicher Empfang ist möglich, bitte bei der Buchung anfragen.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.parking">Gibt es Parkmöglichkeiten?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.parking">Ja, es stehen 2 kostenlose Parkplätze auf dem Grundstück zur Verfügung, ca. 5 m von der Straße entfernt am Eingang zum Garten.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.entrance">Wie komme ich ins Chalet?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.entrance">Das Chalet hat einen privaten Eingang mit eigenem Straßenzugang. Die Schlüsselbox befindet sich am Eingang.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Regeln ── -->
+          <section class="faq-section" id="regeln">
+            <h2 class="faq-section-title" data-i18n="faq.nav.rules">Regeln &amp; Sonstiges</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.pets">Sind Haustiere erlaubt?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.pets">Ja, Haustiere sind erlaubt. Assistenztiere sind selbstverständlich immer willkommen. Bitte bei der Buchung angeben.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.security">Gibt es Überwachungskameras?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.security">Nein, es gibt keine Überwachungskameras auf dem Grundstück oder in der Unterkunft.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span data-i18n="faq.q.book">Wie kann ich buchen?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.a.book">Die Buchung erfolgt über Airbnb. Klicken Sie auf „Mieten" im Navigationsmenü, um direkt zur Buchungsseite zu gelangen. Bei Fragen können Sie uns auch telefonisch erreichen.</p>
+              </div>
+            </div>
+
+          </section>
+
+        </div><!-- /.faq-sections -->
+      </div><!-- /.faq-layout -->
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.left.heading">Chalet Rehaupal</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="footer.link.chalet">Das Chalet</a></li>
+            <li><a href="zimmer.html" data-i18n="footer.link.rooms">Zimmer &amp; Räume</a></li>
+            <li><a href="index.html#" data-i18n="footer.link.amenities">Ausstattung</a></li>
+            <li><a href="lage.html" data-i18n="footer.link.location">Lage &amp; Anreise</a></li>
+            <li><a href="umgebung.html" data-i18n="footer.link.surroundings">Umgebung</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-col--center">
+          <a href="index.html" class="footer-logo">
+            <img src="Rehaupal_Text_US.gif" alt="Rehaupal – Chalet Vosges" class="footer-logo-img">
+          </a>
+          <address class="footer-address">
+            5, Chemin des Spaxes<br>88640 Rehaupal<br>France
+          </address>
+          <a href="tel:+352671161667" class="footer-phone" id="footer-phone">+352 671 161 667</a>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col footer-col--right">
+          <h4 class="footer-heading" data-i18n="footer.right.heading">Kontakt</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="footer.link.booking">Buchungsanfrage</a></li>
+            <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="footer.link.prices">Preise &amp; Verfügbarkeit</a></li>
+            <li><a href="faq.html" data-i18n="footer.link.faq">Häufige Fragen</a></li>
+            <li><a href="https://www.airbnb.de/rooms/53041871/reviews?source_impression_id=p3_1777011205_P3ysyQuL38VCmX84" target="_blank" rel="noopener" data-i18n="footer.link.reviews">Bewertungen</a></li>
+            <li><a href="datenschutz.html" data-i18n="footer.link.privacy">Datenschutz</a></li>
+            <li><a href="impressum.html" data-i18n="footer.link.imprint">Impressum</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">&copy; 2026 Rehaupal Chalet. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ===================== MOBILE MENU ===================== */
+    const toggle = document.getElementById('mobile-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const exp = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!exp));
+      toggle.classList.toggle('is-active');
+      nav.classList.toggle('is-open');
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    /* ===================== ACCORDION ===================== */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('is-open');
+        // Close all
+        document.querySelectorAll('.faq-item.is-open').forEach(el => {
+          el.classList.remove('is-open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked (unless it was already open)
+        if (!isOpen) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ===================== STICKY NAV HIGHLIGHT ===================== */
+    const sections = document.querySelectorAll('.faq-section');
+    const navItems = document.querySelectorAll('.faq-nav-item');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+      });
+      navItems.forEach(a => {
+        a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
+      });
+    }, { passive: true });
+
+    /* ===================== LANGUAGE SWITCHER ===================== */
+    const translations = {
+      de: {
+        'nav.photos': 'Fotos', 'nav.rent': 'Mieten', 'nav.contact': 'Kontakt',
+        'faq.heading': 'Häufige Fragen',
+        'faq.sub': 'Alles, was Sie über das Chalet Rehaupal wissen müssen.',
+        'faq.nav.chalet': 'Das Chalet', 'faq.nav.bedrooms': 'Schlafzimmer',
+        'faq.nav.amenities': 'Ausstattung', 'faq.nav.kitchen': 'Küche',
+        'faq.nav.outdoor': 'Außenbereiche', 'faq.nav.arrival': 'Anreise',
+        'faq.nav.rules': 'Regeln & Sonstiges',
+        'faq.q.about': 'Was ist das Chalet Rehaupal?',
+        'faq.a.about': 'Das Vosges-Chalet ist ein gemütliches Holzchalet im alpinen Stil, neu eingerichtet und mit zwei privaten Saunen ausgestattet – einer Biosauna im Garten (bis 70 °C) und einer Sauna im Inneren. Es liegt mitten in der Natur der französischen Vogesen, 15 bis 20 Minuten von Gérardmer entfernt.',
+        'faq.q.sauna': 'Wie sind die Saunen?',
+        'faq.a.sauna': 'Das Chalet verfügt über zwei private Saunen: eine Innen-Sauna sowie eine große Biosauna im Garten, ca. 30 m vom Chalet entfernt. Die Biosauna ist eine Niedrigtemperatursauna (55–70 °C) mit einem angeschlossenen Ruheraum und Blick ins Tal.',
+        'faq.q.heating': 'Wie wird das Chalet geheizt?',
+        'faq.a.heating': 'Das Chalet wird über den Kaminofen im Wohnbereich sowie über elektrische Heizkörper in allen Zimmern beheizt. Holz für den Kamin ist vor Ort verfügbar.',
+        'faq.q.location': 'Wie weit ist es bis Gérardmer?',
+        'faq.a.location': 'Das Chalet liegt 15 bis 20 Fahrminuten von Gérardmer entfernt. Der nächste Bahnhof befindet sich in Épinal (TGV-Anschluss), ca. 25 Minuten mit dem Auto.',
+        'faq.q.beds': 'Wie sind die Schlafzimmer ausgestattet?',
+        'faq.a.beds': 'Das Chalet hat 3 Schlafzimmer:',
+        'faq.a.bed1': 'Schlafzimmer 1: Doppelbett (160 cm)',
+        'faq.a.bed2': 'Schlafzimmer 2: Schlafsofa (140 cm)',
+        'faq.a.bed3': 'Schlafzimmer 3: 2 Einzelbetten (90 cm)',
+        'faq.q.linen': 'Ist Bettwäsche inklusive?',
+        'faq.a.linen': 'Bettwäsche ist nicht im Mietpreis enthalten und kann vor Ort gemietet werden. Der Preis beträgt 10 € pro Person und Aufenthalt.',
+        'faq.a.linen.note': 'Tipp: Bringen Sie Ihre eigene Bettwäsche mit, um Kosten zu sparen.',
+        'faq.q.washing': 'Gibt es eine Waschmaschine?',
+        'faq.a.washing': 'Ja, eine Waschmaschine und ein Wäscheständer stehen zur Verfügung. Ein Trockner ist nicht vorhanden.',
+        'faq.q.amenities': 'Was ist im Chalet enthalten?',
+        'faq.amenity.wifi': 'WLAN (inklusive)', 'faq.amenity.tv': 'Fernseher',
+        'faq.amenity.sauna': 'Private Sauna (innen & außen)', 'faq.amenity.fireplace': 'Kaminofen',
+        'faq.amenity.heating': 'Elektrische Heizung', 'faq.amenity.washer': 'Waschmaschine',
+        'faq.amenity.hairdryer': 'Föhn', 'faq.amenity.boardgames': 'Brettspiele',
+        'faq.amenity.workspace': 'Arbeitsplatz (mit Tür)', 'faq.amenity.smokedetector': 'Rauchmelder',
+        'faq.amenity.firstaid': 'Erste-Hilfe-Set', 'faq.amenity.pillows': 'Zusätzliche Kissen & Decken',
+        'faq.amenity.note': 'Nicht verfügbar: Trockner, Klimaanlage, Kohlenmonoxidmelder.',
+        'faq.q.wifi': 'Gibt es WLAN?',
+        'faq.a.wifi': 'Ja, WLAN ist kostenlos und steht in einem Raum mit eigener Tür zur Verfügung.',
+        'faq.q.view': 'Welchen Ausblick hat das Chalet?',
+        'faq.a.view': 'Das Chalet bietet einen malerischen Blick in den privaten Garten sowie auf die umliegenden Berge. Die Biosauna hat einen Ruheraum mit Blick ins Tal.',
+        'faq.q.kitchen': 'Wie ist die Küche ausgestattet?',
+        'faq.a.kitchen.intro': 'Die vollausgestattete Küche ermöglicht das selbstständige Kochen.',
+        'faq.k.fridge': 'Kühlschrank', 'faq.k.microwave': 'Mikrowelle',
+        'faq.k.oven': 'Backofen & Herd', 'faq.k.dishwasher': 'Geschirrspüler',
+        'faq.k.kettle': 'Wasserkocher', 'faq.k.coffee': 'Kaffeemaschine',
+        'faq.k.toaster': 'Toaster', 'faq.k.blender': 'Standmixer',
+        'faq.k.pots': 'Töpfe, Pfannen & Grundgewürze', 'faq.k.dishes': 'Geschirr & Besteck',
+        'faq.k.bbq': 'Grill & Grillbesteck', 'faq.k.table': 'Esstisch',
+        'faq.q.outdoor': 'Was gibt es draußen?',
+        'faq.o.garden': 'Privater Garten', 'faq.o.terrace': 'Balkon / Terrasse',
+        'faq.o.dining': 'Essbereich im Freien', 'faq.o.firepit': 'Feuerstelle',
+        'faq.o.bbq': 'Grill', 'faq.o.sauna': 'Biosauna (30 m, privat)',
+        'faq.q.checkin': 'Wie funktioniert der Check-in?',
+        'faq.a.checkin': 'Der Check-in erfolgt eigenständig über eine Schlüsselbox. Sie erhalten den Code vorab.',
+        'faq.q.parking': 'Gibt es Parkmöglichkeiten?',
+        'faq.a.parking': 'Ja, 2 kostenlose Parkplätze auf dem Grundstück, ca. 5 m von der Straße entfernt.',
+        'faq.q.entrance': 'Wie komme ich ins Chalet?',
+        'faq.a.entrance': 'Das Chalet hat einen privaten Eingang mit eigenem Straßenzugang. Die Schlüsselbox befindet sich am Eingang.',
+        'faq.q.pets': 'Sind Haustiere erlaubt?',
+        'faq.a.pets': 'Ja, Haustiere sind erlaubt. Assistenztiere sind immer willkommen. Bitte bei der Buchung angeben.',
+        'faq.q.security': 'Gibt es Überwachungskameras?',
+        'faq.a.security': 'Nein, es gibt keine Überwachungskameras auf dem Grundstück oder in der Unterkunft.',
+        'faq.q.book': 'Wie kann ich buchen?',
+        'faq.a.book': 'Die Buchung erfolgt über Airbnb. Klicken Sie auf „Mieten" im Navigationsmenü',
+        'footer.left.heading': 'Chalet Rehaupal', 'footer.link.chalet': 'Das Chalet',
+        'footer.link.rooms': 'Zimmer & Räume', 'footer.link.amenities': 'Ausstattung',
+        'footer.link.location': 'Lage & Anreise', 'footer.link.surroundings': 'Umgebung',
+        'footer.right.heading': 'Kontakt', 'footer.link.booking': 'Buchungsanfrage',
+        'footer.link.prices': 'Preise & Verfügbarkeit', 'footer.link.faq': 'Häufige Fragen',
+        'footer.link.reviews': 'Bewertungen', 'footer.link.privacy': 'Datenschutz',
+        'footer.link.imprint': 'Impressum', 'footer.copyright': '© 2026 Rehaupal Chalet. Alle Rechte vorbehalten.',
+      },
+      en: {
+        'nav.photos': 'Photos', 'nav.rent': 'Rent', 'nav.contact': 'Contact',
+        'faq.heading': 'FAQ', 'faq.sub': 'Everything you need to know about Chalet Rehaupal.',
+        'faq.nav.chalet': 'The Chalet', 'faq.nav.bedrooms': 'Bedrooms',
+        'faq.nav.amenities': 'Amenities', 'faq.nav.kitchen': 'Kitchen',
+        'faq.nav.outdoor': 'Outdoor', 'faq.nav.arrival': 'Arrival',
+        'faq.nav.rules': 'Rules & Other',
+        'faq.q.about': 'What is Chalet Rehaupal?',
+        'faq.a.about': 'The Vosges Chalet is a cosy wooden chalet in alpine style, newly furnished with two private saunas — an outdoor bio-sauna (up to 70 °C) and an indoor sauna. It sits in the heart of the French Vosges, 15 to 20 minutes from Gérardmer.',
+        'faq.q.sauna': 'What are the saunas like?',
+        'faq.a.sauna': 'The chalet has two private saunas: an indoor sauna and a large bio-sauna in the garden, approx. 30 m from the chalet. The bio-sauna operates at 55–70 °C and has a relaxation room with a view of the valley.',
+        'faq.q.heating': 'How is the chalet heated?',
+        'faq.a.heating': 'The chalet is heated by the wood-burning stove in the living area and by electric heaters in all rooms. Firewood is available on site.',
+        'faq.q.location': 'How far is it to Gérardmer?',
+        'faq.a.location': 'The chalet is 15 to 20 minutes by car from Gérardmer. The nearest train station is Épinal (TGV connection), about 25 minutes away.',
+        'faq.q.beds': 'How are the bedrooms set up?',
+        'faq.a.beds': 'The chalet has 3 bedrooms:',
+        'faq.a.bed1': 'Bedroom 1: Double bed (160 cm)',
+        'faq.a.bed2': 'Bedroom 2: Sofa bed (140 cm)',
+        'faq.a.bed3': 'Bedroom 3: 2 single beds (90 cm)',
+        'faq.q.linen': 'Is bed linen included?',
+        'faq.a.linen': 'Bed linen is not included in the rental price and can be hired on site for 10 € per person per stay.',
+        'faq.a.linen.note': 'Tip: Bring your own bed linen to save costs.',
+        'faq.q.washing': 'Is there a washing machine?',
+        'faq.a.washing': 'Yes, a washing machine and drying rack are available. There is no tumble dryer.',
+        'faq.q.amenities': 'What is included in the chalet?',
+        'faq.amenity.wifi': 'WiFi (free)', 'faq.amenity.tv': 'TV',
+        'faq.amenity.sauna': 'Private sauna (indoor & outdoor)', 'faq.amenity.fireplace': 'Wood-burning stove',
+        'faq.amenity.heating': 'Electric heating', 'faq.amenity.washer': 'Washing machine',
+        'faq.amenity.hairdryer': 'Hair dryer', 'faq.amenity.boardgames': 'Board games',
+        'faq.amenity.workspace': 'Workspace (with door)', 'faq.amenity.smokedetector': 'Smoke detector',
+        'faq.amenity.firstaid': 'First aid kit', 'faq.amenity.pillows': 'Extra pillows & blankets',
+        'faq.amenity.note': 'Not available: tumble dryer, air conditioning, CO detector.',
+        'faq.q.wifi': 'Is WiFi available?',
+        'faq.a.wifi': 'Yes, free WiFi is available in a room with its own door, ideal for working.',
+        'faq.q.view': 'What is the view like?',
+        'faq.a.view': 'The chalet offers scenic views of the private garden and the surrounding Vosges mountains. The bio-sauna has a relaxation room with a valley view.',
+        'faq.q.kitchen': 'How is the kitchen equipped?',
+        'faq.a.kitchen.intro': 'The fully equipped kitchen allows guests to prepare their own meals.',
+        'faq.k.fridge': 'Fridge', 'faq.k.microwave': 'Microwave',
+        'faq.k.oven': 'Oven & hob', 'faq.k.dishwasher': 'Dishwasher',
+        'faq.k.kettle': 'Kettle', 'faq.k.coffee': 'Coffee machine',
+        'faq.k.toaster': 'Toaster', 'faq.k.blender': 'Blender',
+        'faq.k.pots': 'Pots, pans & basic spices', 'faq.k.dishes': 'Crockery & cutlery',
+        'faq.k.bbq': 'BBQ & utensils', 'faq.k.table': 'Dining table',
+        'faq.q.outdoor': 'What is available outside?',
+        'faq.o.garden': 'Private garden', 'faq.o.terrace': 'Balcony / terrace',
+        'faq.o.dining': 'Outdoor dining area', 'faq.o.firepit': 'Fire pit',
+        'faq.o.bbq': 'BBQ', 'faq.o.sauna': 'Bio-sauna (30 m, private)',
+        'faq.q.checkin': 'How does check-in work?',
+        'faq.a.checkin': 'Check-in is self-service via a key box. You will receive the code in advance.',
+        'faq.q.parking': 'Is there parking?',
+        'faq.a.parking': 'Yes, 2 free parking spaces on the property, approx. 5 m from the road.',
+        'faq.q.entrance': 'How do I access the chalet?',
+        'faq.a.entrance': 'The chalet has a private entrance with its own road access. The key box is at the entrance.',
+        'faq.q.pets': 'Are pets allowed?',
+        'faq.a.pets': 'Yes, pets are welcome. Assistance animals are always allowed. Please mention at booking.',
+        'faq.q.security': 'Are there security cameras?',
+        'faq.a.security': 'No, there are no security cameras on the property or in the accommodation.',
+        'faq.q.book': 'How do I book?',
+        'faq.a.book': 'Bookings are made via Airbnb. Click "Rent" in the navigation or call us directly.',
+        'footer.left.heading': 'Chalet Rehaupal', 'footer.link.chalet': 'The Chalet',
+        'footer.link.rooms': 'Rooms & Spaces', 'footer.link.amenities': 'Amenities',
+        'footer.link.location': 'Location & Directions', 'footer.link.surroundings': 'Surroundings',
+        'footer.right.heading': 'Contact', 'footer.link.booking': 'Booking inquiry',
+        'footer.link.prices': 'Prices & Availability', 'footer.link.faq': 'FAQ',
+        'footer.link.reviews': 'Reviews', 'footer.link.privacy': 'Privacy Policy',
+        'footer.link.imprint': 'Legal notice', 'footer.copyright': '© 2026 Rehaupal Chalet. All rights reserved.',
+      },
+      fr: {
+        'nav.photos': 'Photos', 'nav.rent': 'Louer', 'nav.contact': 'Contact',
+        'faq.heading': 'Questions fréquentes', 'faq.sub': 'Tout ce que vous devez savoir sur le Chalet Rehaupal.',
+        'faq.nav.chalet': 'Le Chalet', 'faq.nav.bedrooms': 'Chambres',
+        'faq.nav.amenities': 'Équipements', 'faq.nav.kitchen': 'Cuisine',
+        'faq.nav.outdoor': 'Extérieur', 'faq.nav.arrival': 'Arrivée',
+        'faq.nav.rules': 'Règles & Autres',
+        'faq.q.about': "Qu'est-ce que le Chalet Rehaupal ?",
+        'faq.a.about': "Le Vosges-Chalet est un chalet en bois confortable de style alpin, nouvellement meublé, avec deux saunas privés — un sauna bio en plein air (jusqu'à 70 °C) et un sauna intérieur. Il est situé au cœur des Vosges françaises, à 15-20 minutes de Gérardmer.",
+        'faq.q.sauna': 'Comment sont les saunas ?',
+        'faq.a.sauna': "Le chalet dispose de deux saunas privés : un sauna intérieur et un grand sauna bio dans le jardin, à environ 30 m du chalet. Le sauna bio fonctionne à 55–70 °C et dispose d'un salon de repos avec vue sur la vallée.",
+        'faq.q.heating': 'Comment le chalet est-il chauffé ?',
+        'faq.a.heating': 'Le chalet est chauffé par le poêle à bois du séjour et par des radiateurs électriques dans toutes les pièces. Le bois est disponible sur place.',
+        'faq.q.location': 'À quelle distance se trouve Gérardmer ?',
+        'faq.a.location': "Le chalet est à 15-20 minutes en voiture de Gérardmer. La gare la plus proche est Épinal (liaison TGV), à environ 25 minutes.",
+        'faq.q.beds': 'Comment sont agencées les chambres ?',
+        'faq.a.beds': 'Le chalet dispose de 3 chambres :',
+        'faq.a.bed1': 'Chambre 1 : Lit double (160 cm)',
+        'faq.a.bed2': 'Chambre 2 : Canapé-lit (140 cm)',
+        'faq.a.bed3': 'Chambre 3 : 2 lits simples (90 cm)',
+        'faq.q.linen': 'Le linge de lit est-il inclus ?',
+        'faq.a.linen': "Le linge de lit n'est pas inclus dans le prix de location et peut être loué sur place pour 10 € par personne et par séjour.",
+        'faq.a.linen.note': 'Conseil : apportez votre propre linge de lit pour économiser.',
+        'faq.q.washing': 'Y a-t-il un lave-linge ?',
+        'faq.a.washing': "Oui, un lave-linge et un séchoir à linge sont disponibles. Il n'y a pas de sèche-linge.",
+        'faq.q.amenities': "Qu'est-ce qui est inclus dans le chalet ?",
+        'faq.amenity.wifi': 'WiFi (gratuit)', 'faq.amenity.tv': 'Télévision',
+        'faq.amenity.sauna': 'Sauna privé (intérieur & extérieur)', 'faq.amenity.fireplace': 'Poêle à bois',
+        'faq.amenity.heating': 'Chauffage électrique', 'faq.amenity.washer': 'Lave-linge',
+        'faq.amenity.hairdryer': 'Sèche-cheveux', 'faq.amenity.boardgames': 'Jeux de société',
+        'faq.amenity.workspace': 'Espace de travail (avec porte)', 'faq.amenity.smokedetector': 'Détecteur de fumée',
+        'faq.amenity.firstaid': 'Trousse de premiers secours', 'faq.amenity.pillows': 'Oreillers & couvertures supplémentaires',
+        'faq.amenity.note': 'Non disponible : sèche-linge, climatisation, détecteur de CO.',
+        'faq.q.wifi': 'Y a-t-il le WiFi ?',
+        'faq.a.wifi': 'Oui, le WiFi est gratuit et disponible dans une pièce avec sa propre porte.',
+        'faq.q.view': 'Quelle est la vue depuis le chalet ?',
+        'faq.a.view': "Le chalet offre une vue pittoresque sur le jardin privé et les montagnes des Vosges. Le sauna bio dispose d'un salon de repos avec vue sur la vallée.",
+        'faq.q.kitchen': 'Comment est équipée la cuisine ?',
+        'faq.a.kitchen.intro': 'La cuisine entièrement équipée permet aux hôtes de préparer leurs propres repas.',
+        'faq.k.fridge': 'Réfrigérateur', 'faq.k.microwave': 'Micro-ondes',
+        'faq.k.oven': 'Four & plaque de cuisson', 'faq.k.dishwasher': 'Lave-vaisselle',
+        'faq.k.kettle': 'Bouilloire', 'faq.k.coffee': 'Machine à café',
+        'faq.k.toaster': 'Grille-pain', 'faq.k.blender': 'Mixeur',
+        'faq.k.pots': 'Casseroles, poêles & épices de base', 'faq.k.dishes': 'Vaisselle & couverts',
+        'faq.k.bbq': 'Barbecue & ustensiles', 'faq.k.table': 'Table à manger',
+        'faq.q.outdoor': "Qu'y a-t-il à l'extérieur ?",
+        'faq.o.garden': 'Jardin privé', 'faq.o.terrace': 'Balcon / terrasse',
+        'faq.o.dining': 'Coin repas extérieur', 'faq.o.firepit': 'Foyer extérieur',
+        'faq.o.bbq': 'Barbecue', 'faq.o.sauna': 'Sauna bio (30 m, privé)',
+        'faq.q.checkin': "Comment fonctionne l'arrivée ?",
+        'faq.a.checkin': "L'arrivée est autonome via une boîte à clés. Vous recevrez le code à l'avance.",
+        'faq.q.parking': 'Y a-t-il un parking ?',
+        'faq.a.parking': 'Oui, 2 places de parking gratuites sur la propriété, à environ 5 m de la route.',
+        'faq.q.entrance': 'Comment accéder au chalet ?',
+        'faq.a.entrance': "Le chalet dispose d'une entrée privée avec son propre accès depuis la rue. La boîte à clés se trouve à l'entrée.",
+        'faq.q.pets': 'Les animaux sont-ils acceptés ?',
+        'faq.a.pets': 'Oui, les animaux de compagnie sont les bienvenus. Les animaux d\'assistance sont toujours acceptés.',
+        'faq.q.security': 'Y a-t-il des caméras de surveillance ?',
+        'faq.a.security': "Non, il n'y a pas de caméras de surveillance sur la propriété ni dans le logement.",
+        'faq.q.book': 'Comment réserver ?',
+        'faq.a.book': "La réservation se fait via Airbnb. Cliquez sur « Louer » dans le menu ou appelez-nous directement.",
+        'footer.left.heading': 'Chalet Rehaupal', 'footer.link.chalet': 'Le Chalet',
+        'footer.link.rooms': 'Chambres & Espaces', 'footer.link.amenities': 'Équipements',
+        'footer.link.location': 'Situation & Accès', 'footer.link.surroundings': 'Environnement',
+        'footer.right.heading': 'Contact', 'footer.link.booking': 'Demande de réservation',
+        'footer.link.prices': 'Tarifs & Disponibilités', 'footer.link.faq': 'Questions fréquentes',
+        'footer.link.reviews': 'Avis', 'footer.link.privacy': 'Confidentialité',
+        'footer.link.imprint': 'Mentions légales', 'footer.copyright': '© 2026 Rehaupal Chalet. Tous droits réservés.',
+      }
+    };
+
+    function setLanguage(lang) {
+      localStorage.setItem('rehaupal-lang', lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n];
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem('rehaupal-lang') || 'de');
+  </script>
+</body>
+</html>

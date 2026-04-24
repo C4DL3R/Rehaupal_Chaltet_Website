@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umgebung – Rehaupal Chalet Vosges</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .site-header { height: var(--header-h) !important; background: var(--header-bg) !important; }
+    .main-nav, .header-right { opacity: 1 !important; }
+
+    .umgebung-page {
+      padding-top: calc(var(--header-h) + 64px);
+      padding-bottom: 96px;
+    }
+
+    .umgebung-heading {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .umgebung-sub {
+      font-size: 17px;
+      color: var(--text-medium);
+      font-weight: 300;
+      margin-bottom: 64px;
+      max-width: 580px;
+    }
+
+    /* ── Destination cards ── */
+    .destination-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .destination-card {
+      border: 1px solid #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .destination-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+
+    .destination-card-body {
+      padding: 24px;
+    }
+
+    .destination-distance {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--olive-primary);
+      margin-bottom: 8px;
+    }
+
+    .destination-name {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .destination-desc {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--text-medium);
+      font-weight: 300;
+    }
+
+    /* ── Activities section ── */
+    .activities-section {
+      margin-bottom: 64px;
+    }
+
+    .activities-heading {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--olive-primary);
+      margin-bottom: 32px;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .activity-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .activity-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .activity-title {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+
+    .activity-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-medium);
+      font-weight: 300;
+    }
+
+    /* ── Seasons ── */
+    .seasons-section { margin-bottom: 64px; }
+
+    .seasons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .season-card {
+      background: var(--off-white);
+      border-radius: 4px;
+      padding: 28px;
+    }
+
+    .season-name {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .season-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-medium);
+      font-weight: 300;
+    }
+
+    @media (max-width: 992px) {
+      .destination-grid { grid-template-columns: repeat(2, 1fr); }
+      .activities-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .umgebung-page { padding-top: calc(var(--header-h) + 40px); }
+      .destination-grid,
+      .activities-grid,
+      .seasons-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header scrolled" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="Rehaupal_Text_US.gif" alt="Rehaupal – Chalet Vosges" class="logo-img">
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="fotos.html" data-i18n="nav.photos">Fotos</a></li>
+          <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="nav.rent">Mieten</a></li>
+          <li><a href="lage.html" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+        <div class="lang-switcher lang-switcher--mobile">
+          <button class="lang-btn" data-lang="de">DE</button><span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="de">DE</button><span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="umgebung-page">
+    <div class="container">
+
+      <h1 class="umgebung-heading" data-i18n="umg.heading">Umgebung</h1>
+      <p class="umgebung-sub" data-i18n="umg.sub">Das Chalet Rehaupal liegt im Herzen der Vogesen – umgeben von Wäldern, Seen und Bergen. Hier beginnen Abenteuer direkt vor der Haustür.</p>
+
+      <!-- Destinations -->
+      <div class="destination-grid">
+
+        <div class="destination-card">
+          <div class="destination-card-body">
+            <div class="destination-distance" data-i18n="umg.d1.dist">15 – 20 Min.</div>
+            <h2 class="destination-name" data-i18n="umg.d1.name">Gérardmer</h2>
+            <p class="destination-desc" data-i18n="umg.d1.desc">Die „Perle der Vogesen" bietet einen malerischen Gebirgssee, alpine Skipisten im Winter und zahlreiche Wanderwege im Sommer. Restaurants, Einkaufsmöglichkeiten und ein Wochenmarkt laden zum Verweilen ein.</p>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-card-body">
+            <div class="destination-distance" data-i18n="umg.d2.dist">20 Min.</div>
+            <h2 class="destination-name" data-i18n="umg.d2.name">La Bresse</h2>
+            <p class="destination-desc" data-i18n="umg.d2.desc">Eines der beliebtesten Skigebiete der Vogesen mit modernen Anlagen, Langlaufloipen und sommerlichen Mountainbike-Trails. Ideal für Familien und Aktivurlauber zu jeder Jahreszeit.</p>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-card-body">
+            <div class="destination-distance" data-i18n="umg.d3.dist">25 Min.</div>
+            <h2 class="destination-name" data-i18n="umg.d3.name">Épinal</h2>
+            <p class="destination-desc" data-i18n="umg.d3.desc">Die Departementhaptstadt bietet eine charmante Altstadt, das berühmte Museum der Bilddruckerei sowie TGV-Anbindung nach Paris. Perfekt für einen Tagesausflug oder die An- und Abreise per Zug.</p>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-card-body">
+            <div class="destination-distance" data-i18n="umg.d4.dist">45 Min.</div>
+            <h2 class="destination-name" data-i18n="umg.d4.name">Route des Vins d'Alsace</h2>
+            <p class="destination-desc" data-i18n="umg.d4.desc">Über den Vogesenpass hinüber ins Elsass: malerische Winzerdörfer, mittelalterliche Fachwerkhäuser und weltbekannte Weine erwarten Sie entlang der berühmten Weinstraße.</p>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-card-body">
+            <div class="destination-distance" data-i18n="umg.d5.dist">1 Std.</div>
+            <h2 class="destination-name" data-i18n="umg.d5.name">Colmar</h2>
+            <p class="destination-desc" data-i18n="umg.d5.desc">Die „Hauptstadt des Elsässer Weins" mit ihrem pittoresken Klein-Venedig, bunten Fachwerkhäusern und dem Isenheimer Altar im Unterlinden-Museum ist ein absolutes Muss für Kulturliebhaber.</p>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-card-body">
+            <div class="destination-distance" data-i18n="umg.d6.dist">1,5 Std.</div>
+            <h2 class="destination-name" data-i18n="umg.d6.name">Strasbourg</h2>
+            <p class="destination-desc" data-i18n="umg.d6.desc">Das Europaparlament, das gotische Münster und die malerische Altstadt Petite France machen Strasbourg zu einem einzigartigen Kurztrip-Ziel – auch mit dem TGV ab Épinal erreichbar.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Activities -->
+      <div class="activities-section">
+        <h2 class="activities-heading" data-i18n="umg.act.heading">Aktivitäten in der Region</h2>
+        <div class="activities-grid">
+
+          <div class="activity-item">
+            <div class="activity-icon">🥾</div>
+            <div class="activity-title" data-i18n="umg.act.hike.title">Wandern</div>
+            <p class="activity-desc" data-i18n="umg.act.hike.desc">Hunderte Kilometer markierter Wanderwege führen durch Wälder, über Kämme und an stillen Bergseen vorbei. Der GR5 und zahlreiche lokale Routen starten in unmittelbarer Nähe.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">⛷️</div>
+            <div class="activity-title" data-i18n="umg.act.ski.title">Ski &amp; Wintersport</div>
+            <p class="activity-desc" data-i18n="umg.act.ski.desc">Gérardmer und La Bresse bieten alpine Pisten, Langlaufloipen und Snowboardparks. Die Vogesen sind ideal für entspannten Wintersport abseits der überlaufenen Alpenorte.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">🚴</div>
+            <div class="activity-title" data-i18n="umg.act.bike.title">Mountainbike &amp; Radfahren</div>
+            <p class="activity-desc" data-i18n="umg.act.bike.desc">Von gemächlichen Radwegen bis hin zu anspruchsvollen Singletrails – die Vogesen sind ein Paradies für Zweiradfahrer. Leihräder und E-Bikes sind in Gérardmer erhältlich.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">🎣</div>
+            <div class="activity-title" data-i18n="umg.act.fish.title">Angeln &amp; Seen</div>
+            <p class="activity-desc" data-i18n="umg.act.fish.desc">Der Lac de Gérardmer und weitere Vogesenseen laden zum Angeln, Kanufahren und im Sommer zum Baden ein. Fischereierlaubnisse sind vor Ort erhältlich.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">🍄</div>
+            <div class="activity-title" data-i18n="umg.act.nature.title">Natur &amp; Pilze</div>
+            <p class="activity-desc" data-i18n="umg.act.nature.desc">Die Vogesenwälder sind im Herbst ein Eldorado für Pilzsammler. Steinpilze, Pfifferlinge und Maronenröhrlinge gedeihen in den alten Mischwäldern rund ums Chalet.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">🧀</div>
+            <div class="activity-title" data-i18n="umg.act.food.title">Kulinarik</div>
+            <p class="activity-desc" data-i18n="umg.act.food.desc">Munster-Käse, Quiche Lorraine, elsässischer Flammkuchen und lokale Weine – die Region ist für ihre herzhafte Küche berühmt. Bauernmärkte und Fromageries finden sich in den umliegenden Dörfern.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">🏰</div>
+            <div class="activity-title" data-i18n="umg.act.culture.title">Kultur &amp; Geschichte</div>
+            <p class="activity-desc" data-i18n="umg.act.culture.desc">Burgruinen auf Vogesenkuppen, das Mémorial de la Ligne Maginot und mittelalterliche Dörfer erzählen die bewegte Geschichte der Grenzregion zwischen Deutschland und Frankreich.</p>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">♨️</div>
+            <div class="activity-title" data-i18n="umg.act.spa.title">Wellness &amp; Entspannung</div>
+            <p class="activity-desc" data-i18n="umg.act.spa.desc">Neben den hauseigenen Saunen bieten die Thermalquellen in Contrexéville und Vittel (ca. 1 Std.) umfangreiche Wellness-Angebote für Erholungssuchende.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Seasons -->
+      <div class="seasons-section">
+        <h2 class="activities-heading" data-i18n="umg.seasons.heading">Das Chalet zu jeder Jahreszeit</h2>
+        <div class="seasons-grid">
+          <div class="season-card">
+            <div class="season-name" data-i18n="umg.season.winter">❄️ Winter</div>
+            <p class="season-desc" data-i18n="umg.season.winter.desc">Schneebedeckte Wälder, Skifahren in Gérardmer und La Bresse, gemütliche Abende am Kaminofen und in der Sauna. Die Vogesen verwandeln sich in eine stille Winterlandschaft – ideal für Paare und Familien.</p>
+          </div>
+          <div class="season-card">
+            <div class="season-name" data-i18n="umg.season.spring">🌸 Frühling</div>
+            <p class="season-desc" data-i18n="umg.season.spring.desc">Die Wälder erwachen, die ersten Wanderwege öffnen sich und die Vogesenseen laden zu ersten Ausflügen ein. Frühling in den Vogesen ist ruhig, grün und erfrischend – ohne den Trubel der Hochsaison.</p>
+          </div>
+          <div class="season-card">
+            <div class="season-name" data-i18n="umg.season.summer">☀️ Sommer</div>
+            <p class="season-desc" data-i18n="umg.season.summer.desc">Wandern, Mountainbiken, Baden im Lac de Gérardmer und Ausflüge ins Elsass. Die Terrasse des Chalets lädt zu langen Abenden im Freien ein. Sommertemperaturen bleiben in den Vogesen angenehm kühl.</p>
+          </div>
+          <div class="season-card">
+            <div class="season-name" data-i18n="umg.season.autumn">🍂 Herbst</div>
+            <p class="season-desc" data-i18n="umg.season.autumn.desc">Das goldene Laub der Vogesen ist atemberaubend schön. Pilze sammeln, Weinlese im Elsass erleben und die Ruhe der Natur genießen – Herbst ist die vielleicht schönste Jahreszeit rund ums Chalet.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.left.heading">Chalet Rehaupal</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="footer.link.chalet">Das Chalet</a></li>
+            <li><a href="zimmer.html" data-i18n="footer.link.rooms">Zimmer &amp; Räume</a></li>
+            <li><a href="lage.html" data-i18n="footer.link.location">Lage &amp; Anreise</a></li>
+            <li><a href="umgebung.html" data-i18n="footer.link.surroundings">Umgebung</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-col--center">
+          <a href="index.html" class="footer-logo">
+            <img src="Rehaupal_Text_US.gif" alt="Rehaupal – Chalet Vosges" class="footer-logo-img">
+          </a>
+          <address class="footer-address">5, Chemin des Spaxes<br>88640 Rehaupal<br>France</address>
+          <a href="tel:+352671161667" class="footer-phone" id="footer-phone">+352 671 161 667</a>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook" class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="Instagram" class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col footer-col--right">
+          <h4 class="footer-heading" data-i18n="footer.right.heading">Kontakt</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="footer.link.booking">Buchungsanfrage</a></li>
+            <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="footer.link.prices">Preise &amp; Verfügbarkeit</a></li>
+            <li><a href="faq.html" data-i18n="footer.link.faq">Häufige Fragen</a></li>
+            <li><a href="https://www.airbnb.de/rooms/53041871/reviews?source_impression_id=p3_1777011205_P3ysyQuL38VCmX84" target="_blank" rel="noopener" data-i18n="footer.link.reviews">Bewertungen</a></li>
+            <li><a href="datenschutz.html" data-i18n="footer.link.privacy">Datenschutz</a></li>
+            <li><a href="impressum.html" data-i18n="footer.link.imprint">Impressum</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">&copy; 2026 Rehaupal Chalet. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-toggle').addEventListener('click', function() {
+      const exp = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!exp));
+      this.classList.toggle('is-active');
+      document.getElementById('main-nav').classList.toggle('is-open');
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+    const t = { de: { 'nav.photos':'Fotos','nav.rent':'Mieten','nav.contact':'Kontakt','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'Das Chalet','footer.link.rooms':'Zimmer & Räume','footer.link.location':'Lage & Anreise','footer.link.surroundings':'Umgebung','footer.right.heading':'Kontakt','footer.link.booking':'Buchungsanfrage','footer.link.prices':'Preise & Verfügbarkeit','footer.link.faq':'Häufige Fragen','footer.link.reviews':'Bewertungen','footer.link.privacy':'Datenschutz','footer.link.imprint':'Impressum','footer.copyright':'© 2026 Rehaupal Chalet. Alle Rechte vorbehalten.' }, en: { 'nav.photos':'Photos','nav.rent':'Rent','nav.contact':'Contact','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'The Chalet','footer.link.rooms':'Rooms & Spaces','footer.link.location':'Location & Directions','footer.link.surroundings':'Surroundings','footer.right.heading':'Contact','footer.link.booking':'Booking inquiry','footer.link.prices':'Prices & Availability','footer.link.faq':'FAQ','footer.link.reviews':'Reviews','footer.link.privacy':'Privacy Policy','footer.link.imprint':'Legal notice','footer.copyright':'© 2026 Rehaupal Chalet. All rights reserved.' }, fr: { 'nav.photos':'Photos','nav.rent':'Louer','nav.contact':'Contact','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'Le Chalet','footer.link.rooms':'Chambres & Espaces','footer.link.location':'Situation & Accès','footer.link.surroundings':'Environnement','footer.right.heading':'Contact','footer.link.booking':'Demande de réservation','footer.link.prices':'Tarifs & Disponibilités','footer.link.faq':'Questions fréquentes','footer.link.reviews':'Avis','footer.link.privacy':'Confidentialité','footer.link.imprint':'Mentions légales','footer.copyright':'© 2026 Rehaupal Chalet. Tous droits réservés.' } };
+    function setLang(l) { localStorage.setItem('rehaupal-lang',l); document.documentElement.lang=l; document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l)); document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[l][el.dataset.i18n])el.textContent=t[l][el.dataset.i18n];}); }
+    document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+    setLang(localStorage.getItem('rehaupal-lang')||'de');
+  </script>
+</body>
+</html>

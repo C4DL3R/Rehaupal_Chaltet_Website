@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotos – Rehaupal Chalet Vosges</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Gallery page ── */
+    .gallery-page {
+      padding-top: calc(var(--header-h) + 56px);
+      padding-bottom: 80px;
+      min-height: 80vh;
+    }
+
+    .gallery-heading {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 48px;
+      letter-spacing: -0.3px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #eee;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(22,26,17,0);
+      transition: background 0.3s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover::after { background: rgba(22,26,17,0.18); }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.93);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.is-open { display: flex; }
+
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+      user-select: none;
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      font-size: 32px;
+      line-height: 1;
+      padding: 12px;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover { color: #fff; }
+
+    .lightbox-close { top: 20px; right: 24px; font-size: 36px; }
+    .lightbox-prev  { left: 20px; top: 50%; transform: translateY(-50%); font-size: 48px; }
+    .lightbox-next  { right: 20px; top: 50%; transform: translateY(-50%); font-size: 48px; }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.55);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 992px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+      .gallery-page { padding-top: calc(var(--header-h) + 36px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header scrolled" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="Rehaupal_Text_US.gif" alt="Rehaupal – Chalet Vosges" class="logo-img">
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="fotos.html" class="nav-active" data-i18n="nav.photos">Fotos</a></li>
+          <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="nav.rent">Mieten</a></li>
+          <li><a href="/#footer-phone" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+        <div class="lang-switcher lang-switcher--mobile">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== GALLERY ===================== -->
+  <main class="gallery-page">
+    <div class="container">
+      <h1 class="gallery-heading" data-i18n="gallery.heading">Fotos</h1>
+
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item" data-index="0">
+          <img src="New_Selection/20251018_085749.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="1">
+          <img src="New_Selection/20251018_085758.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="2">
+          <img src="New_Selection/20251018_092014.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="3">
+          <img src="New_Selection/20251018_164917.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="4">
+          <img src="New_Selection/20251018_164936.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="5">
+          <img src="New_Selection/20251018_165007.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="6">
+          <img src="New_Selection/20251018_165016.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="7">
+          <img src="New_Selection/20251018_165823.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="8">
+          <img src="New_Selection/20251018_165910.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="9">
+          <img src="New_Selection/20251018_165940.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="10">
+          <img src="New_Selection/20251018_170013.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="11">
+          <img src="New_Selection/20251018_170023.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="12">
+          <img src="New_Selection/20251018_170123.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="13">
+          <img src="New_Selection/20251018_171110.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="14">
+          <img src="New_Selection/20251018_171134.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="15">
+          <img src="New_Selection/20251018_171214.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="16">
+          <img src="New_Selection/20251019_155037.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="17">
+          <img src="New_Selection/20251019_155212.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="18">
+          <img src="New_Selection/20251019_155224.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-index="19">
+          <img src="New_Selection/20251019_155305.jpg" alt="Chalet Rehaupal" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto Vollansicht">
+    <button class="lightbox-close" id="lb-close" aria-label="Schließen">&times;</button>
+    <button class="lightbox-prev" id="lb-prev" aria-label="Vorheriges Foto">&#8249;</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+    <button class="lightbox-next" id="lb-next" aria-label="Nächstes Foto">&#8250;</button>
+    <span class="lightbox-counter" id="lb-counter"></span>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <h4 class="footer-heading" data-i18n="footer.left.heading">Chalet Rehaupal</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="footer.link.chalet">Das Chalet</a></li>
+            <li><a href="zimmer.html" data-i18n="footer.link.rooms">Zimmer &amp; Räume</a></li>
+            <li><a href="index.html#" data-i18n="footer.link.amenities">Ausstattung</a></li>
+            <li><a href="lage.html" data-i18n="footer.link.location">Lage &amp; Anreise</a></li>
+            <li><a href="umgebung.html" data-i18n="footer.link.surroundings">Umgebung</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-col--center">
+          <a href="index.html" class="footer-logo" aria-label="Chalet Rehaupal Startseite">
+            <img src="Rehaupal_Text_US.gif" alt="Rehaupal – Chalet Vosges" class="footer-logo-img">
+          </a>
+          <address class="footer-address">
+            5, Chemin des Spaxes<br>
+            88640 Rehaupal<br>
+            France
+          </address>
+          <a href="tel:+352671161667" class="footer-phone" id="footer-phone">+352 671 161 667</a>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col footer-col--right">
+          <h4 class="footer-heading" data-i18n="footer.right.heading">Kontakt</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="footer.link.booking">Buchungsanfrage</a></li>
+            <li><a href="https://www.airbnb.de/rooms/53041871" target="_blank" rel="noopener" data-i18n="footer.link.prices">Preise &amp; Verfügbarkeit</a></li>
+            <li><a href="faq.html" data-i18n="footer.link.faq">Häufige Fragen</a></li>
+            <li><a href="https://www.airbnb.de/rooms/53041871/reviews?source_impression_id=p3_1777011205_P3ysyQuL38VCmX84" target="_blank" rel="noopener" data-i18n="footer.link.reviews">Bewertungen</a></li>
+            <li><a href="datenschutz.html" data-i18n="footer.link.privacy">Datenschutz</a></li>
+            <li><a href="impressum.html" data-i18n="footer.link.imprint">Impressum</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">&copy; 2026 Rehaupal Chalet. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Active nav link */
+    .nav-active {
+      color: var(--white) !important;
+      border-bottom-color: rgba(255,255,255,0.55) !important;
+    }
+    /* Override expanded-header styles — fotos page uses collapsed header only */
+    .site-header {
+      height: var(--header-h) !important;
+      background: var(--header-bg) !important;
+    }
+    .main-nav, .header-right { opacity: 1 !important; }
+  </style>
+
+  <script>
+    /* ===================== MOBILE MENU ===================== */
+    const toggle = document.getElementById('mobile-toggle');
+    const nav    = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.classList.toggle('is-active');
+      nav.classList.toggle('is-open');
+    });
+
+    /* ===================== LIGHTBOX ===================== */
+    const images  = Array.from(document.querySelectorAll('.gallery-item img'));
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lb-img');
+    const lbCount = document.getElementById('lb-counter');
+    let current   = 0;
+
+    function openLightbox(index) {
+      current = index;
+      lbImg.src = images[current].src;
+      lbImg.alt = images[current].alt;
+      lbCount.textContent = `${current + 1} / ${images.length}`;
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() { openLightbox((current - 1 + images.length) % images.length); }
+    function showNext() { openLightbox((current + 1) % images.length); }
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => openLightbox(Number(item.dataset.index)));
+    });
+
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', showPrev);
+    document.getElementById('lb-next').addEventListener('click', showNext);
+
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+
+    /* ===================== LANGUAGE SWITCHER ===================== */
+    const translations = {
+      de: {
+        'nav.photos': 'Fotos', 'nav.rent': 'Mieten', 'nav.contact': 'Kontakt',
+        'gallery.heading': 'Fotos',
+        'footer.left.heading': 'Chalet Rehaupal', 'footer.link.chalet': 'Das Chalet',
+        'footer.link.rooms': 'Zimmer & Räume', 'footer.link.amenities': 'Ausstattung',
+        'footer.link.location': 'Lage & Anreise', 'footer.link.surroundings': 'Umgebung',
+        'footer.right.heading': 'Kontakt', 'footer.link.booking': 'Buchungsanfrage',
+        'footer.link.prices': 'Preise & Verfügbarkeit', 'footer.link.faq': 'Häufige Fragen',
+        'footer.link.reviews': 'Bewertungen',
+        'footer.link.privacy': 'Datenschutz', 'footer.link.imprint': 'Impressum',
+        'footer.copyright': '© 2026 Rehaupal Chalet. Alle Rechte vorbehalten.',
+      },
+      en: {
+        'nav.photos': 'Photos', 'nav.rent': 'Rent', 'nav.contact': 'Contact',
+        'gallery.heading': 'Photos',
+        'footer.left.heading': 'Chalet Rehaupal', 'footer.link.chalet': 'The Chalet',
+        'footer.link.rooms': 'Rooms & Spaces', 'footer.link.amenities': 'Amenities',
+        'footer.link.location': 'Location & Directions', 'footer.link.surroundings': 'Surroundings',
+        'footer.right.heading': 'Contact', 'footer.link.booking': 'Booking inquiry',
+        'footer.link.prices': 'Prices & Availability', 'footer.link.faq': 'FAQ',
+        'footer.link.reviews': 'Reviews',
+        'footer.link.privacy': 'Privacy Policy', 'footer.link.imprint': 'Legal notice',
+        'footer.copyright': '© 2026 Rehaupal Chalet. All rights reserved.',
+      },
+      fr: {
+        'nav.photos': 'Photos', 'nav.rent': 'Louer', 'nav.contact': 'Contact',
+        'gallery.heading': 'Photos',
+        'footer.left.heading': 'Chalet Rehaupal', 'footer.link.chalet': 'Le Chalet',
+        'footer.link.rooms': 'Chambres & Espaces', 'footer.link.amenities': 'Équipements',
+        'footer.link.location': 'Situation & Accès', 'footer.link.surroundings': 'Environnement',
+        'footer.right.heading': 'Contact', 'footer.link.booking': 'Demande de réservation',
+        'footer.link.prices': 'Tarifs & Disponibilités', 'footer.link.faq': 'Questions fréquentes',
+        'footer.link.reviews': 'Avis',
+        'footer.link.privacy': 'Confidentialité', 'footer.link.imprint': 'Mentions légales',
+        'footer.copyright': '© 2026 Rehaupal Chalet. Tous droits réservés.',
+      }
+    };
+
+    function setLanguage(lang) {
+      localStorage.setItem('rehaupal-lang', lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n];
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem('rehaupal-lang') || 'de');
+  </script>
+</body>
+</html>
