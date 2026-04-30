@@ -451,7 +451,7 @@
     };
 
     /* ===================== LANGUAGE SWITCHER ===================== */
-    let currentLang = localStorage.getItem('rehaupal-lang') || 'de';
+    let currentLang = localStorage.getItem('rehaupal-lang') || 'fr';
 
     function setLanguage(lang) {
       currentLang = lang;
@@ -509,7 +509,7 @@
       .then(data => {
         document.getElementById('airbnb-score').textContent = data.score;
         const countEl = document.getElementById('airbnb-count');
-        const lang = localStorage.getItem('rehaupal-lang') || 'de';
+        const lang = localStorage.getItem('rehaupal-lang') || 'fr';
         const suffix = { de: 'Bewertungen', en: 'reviews', fr: 'avis' };
         countEl.textContent = `${data.reviews} ${suffix[lang] || 'Bewertungen'}`;
         // Keep translations in sync so language switching stays correct
