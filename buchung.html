@@ -33,6 +33,38 @@
       margin-bottom: 56px;
     }
 
+    /* ── Discount banner ── */
+    .discount-banner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--quote-bg);
+      color: white;
+      border-radius: 4px;
+      padding: 20px 28px;
+      margin-bottom: 36px;
+    }
+
+    .discount-pct {
+      font-family: 'Sacramento', cursive;
+      font-size: 52px;
+      line-height: 1;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .discount-text {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .discount-text strong {
+      color: white;
+      font-weight: 600;
+    }
+
     /* ── Contact cards ── */
     .contact-cards {
       display: flex;
@@ -220,6 +252,12 @@
         <h1 class="buchung-heading" data-i18n="buch.heading">Buchungsanfrage</h1>
         <p class="buchung-sub" data-i18n="buch.sub">Kontaktieren Sie uns direkt oder buchen Sie bequem über Airbnb.</p>
 
+        <!-- Discount banner -->
+        <div class="discount-banner">
+          <span class="discount-pct">−10%</span>
+          <span class="discount-text" data-i18n="buch.discount">Bei Direktbuchung per Telefon oder E-Mail erhalten Sie <strong>10&nbsp;% Rabatt</strong> auf den regulären Preis.</span>
+        </div>
+
         <!-- Direct contact -->
         <div class="contact-cards">
 
@@ -333,9 +371,9 @@
     }, { passive: true });
 
     const t = {
-      de: { 'nav.photos':'Fotos','nav.rent':'Mieten','nav.contact':'Kontakt','buch.heading':'Buchungsanfrage','buch.sub':'Kontaktieren Sie uns direkt oder buchen Sie bequem über Airbnb.','buch.phone.label':'Telefon','buch.phone.note':'Direkt anrufen','buch.email.label':'E-Mail','buch.email.note':'Antwort innerhalb von 24 Stunden','buch.or':'oder','buch.airbnb.label':'Direkt buchen über','buch.airbnb.note':'Verfügbarkeit prüfen & Termin sichern','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'Das Chalet','footer.link.rooms':'Zimmer & Räume','footer.link.amenities':'Ausstattung','footer.link.location':'Lage & Anreise','footer.link.surroundings':'Umgebung','footer.right.heading':'Kontakt','footer.link.booking':'Buchungsanfrage','footer.link.prices':'Preise & Verfügbarkeit','footer.link.faq':'Häufige Fragen','footer.link.reviews':'Bewertungen','footer.link.privacy':'Datenschutz','footer.link.imprint':'Impressum','footer.copyright':'© 2026 Rehaupal Chalet. Alle Rechte vorbehalten.' },
-      en: { 'nav.photos':'Photos','nav.rent':'Rent','nav.contact':'Contact','buch.heading':'Booking inquiry','buch.sub':'Contact us directly or book conveniently via Airbnb.','buch.phone.label':'Phone','buch.phone.note':'Call directly','buch.email.label':'E-Mail','buch.email.note':'Reply within 24 hours','buch.or':'or','buch.airbnb.label':'Book directly via','buch.airbnb.note':'Check availability & secure your dates','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'The Chalet','footer.link.rooms':'Rooms & Spaces','footer.link.amenities':'Amenities','footer.link.location':'Location & Directions','footer.link.surroundings':'Surroundings','footer.right.heading':'Contact','footer.link.booking':'Booking inquiry','footer.link.prices':'Prices & Availability','footer.link.faq':'FAQ','footer.link.reviews':'Reviews','footer.link.privacy':'Privacy Policy','footer.link.imprint':'Legal notice','footer.copyright':'© 2026 Rehaupal Chalet. All rights reserved.' },
-      fr: { 'nav.photos':'Photos','nav.rent':'Louer','nav.contact':'Contact','buch.heading':'Demande de réservation','buch.sub':'Contactez-nous directement ou réservez facilement via Airbnb.','buch.phone.label':'Téléphone','buch.phone.note':'Appel direct','buch.email.label':'E-mail','buch.email.note':'Réponse sous 24 heures','buch.or':'ou','buch.airbnb.label':'Réserver directement via','buch.airbnb.note':'Vérifier les disponibilités & réserver','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'Le Chalet','footer.link.rooms':'Chambres & Espaces','footer.link.amenities':'Équipements','footer.link.location':'Situation & Accès','footer.link.surroundings':'Environnement','footer.right.heading':'Contact','footer.link.booking':'Demande de réservation','footer.link.prices':'Tarifs & Disponibilités','footer.link.faq':'Questions fréquentes','footer.link.reviews':'Avis','footer.link.privacy':'Confidentialité','footer.link.imprint':'Mentions légales','footer.copyright':'© 2026 Rehaupal Chalet. Tous droits réservés.' }
+      de: { 'nav.photos':'Fotos','nav.rent':'Mieten','nav.contact':'Kontakt','buch.heading':'Buchungsanfrage','buch.sub':'Kontaktieren Sie uns direkt oder buchen Sie bequem über Airbnb.','buch.discount':'Bei Direktbuchung per Telefon oder E-Mail erhalten Sie 10 % Rabatt auf den regulären Preis.','buch.phone.label':'Telefon','buch.phone.note':'Direkt anrufen','buch.email.label':'E-Mail','buch.email.note':'Antwort innerhalb von 24 Stunden','buch.or':'oder','buch.airbnb.label':'Direkt buchen über','buch.airbnb.note':'Verfügbarkeit prüfen & Termin sichern','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'Das Chalet','footer.link.rooms':'Zimmer & Räume','footer.link.amenities':'Ausstattung','footer.link.location':'Lage & Anreise','footer.link.surroundings':'Umgebung','footer.right.heading':'Kontakt','footer.link.booking':'Buchungsanfrage','footer.link.prices':'Preise & Verfügbarkeit','footer.link.faq':'Häufige Fragen','footer.link.reviews':'Bewertungen','footer.link.privacy':'Datenschutz','footer.link.imprint':'Impressum','footer.copyright':'© 2026 Rehaupal Chalet. Alle Rechte vorbehalten.' },
+      en: { 'nav.photos':'Photos','nav.rent':'Rent','nav.contact':'Contact','buch.heading':'Booking inquiry','buch.sub':'Contact us directly or book conveniently via Airbnb.','buch.discount':'Book directly by phone or email and get 10% off the regular price.','buch.phone.label':'Phone','buch.phone.note':'Call directly','buch.email.label':'E-Mail','buch.email.note':'Reply within 24 hours','buch.or':'or','buch.airbnb.label':'Book directly via','buch.airbnb.note':'Check availability & secure your dates','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'The Chalet','footer.link.rooms':'Rooms & Spaces','footer.link.amenities':'Amenities','footer.link.location':'Location & Directions','footer.link.surroundings':'Surroundings','footer.right.heading':'Contact','footer.link.booking':'Booking inquiry','footer.link.prices':'Prices & Availability','footer.link.faq':'FAQ','footer.link.reviews':'Reviews','footer.link.privacy':'Privacy Policy','footer.link.imprint':'Legal notice','footer.copyright':'© 2026 Rehaupal Chalet. All rights reserved.' },
+      fr: { 'nav.photos':'Photos','nav.rent':'Louer','nav.contact':'Contact','buch.heading':'Demande de réservation','buch.sub':'Contactez-nous directement ou réservez facilement via Airbnb.','buch.discount':'Réservez directement par téléphone ou e-mail et bénéficiez de 10 % de réduction sur le tarif habituel.','buch.phone.label':'Téléphone','buch.phone.note':'Appel direct','buch.email.label':'E-mail','buch.email.note':'Réponse sous 24 heures','buch.or':'ou','buch.airbnb.label':'Réserver directement via','buch.airbnb.note':'Vérifier les disponibilités & réserver','footer.left.heading':'Chalet Rehaupal','footer.link.chalet':'Le Chalet','footer.link.rooms':'Chambres & Espaces','footer.link.amenities':'Équipements','footer.link.location':'Situation & Accès','footer.link.surroundings':'Environnement','footer.right.heading':'Contact','footer.link.booking':'Demande de réservation','footer.link.prices':'Tarifs & Disponibilités','footer.link.faq':'Questions fréquentes','footer.link.reviews':'Avis','footer.link.privacy':'Confidentialité','footer.link.imprint':'Mentions légales','footer.copyright':'© 2026 Rehaupal Chalet. Tous droits réservés.' }
     };
     function setLang(l) { localStorage.setItem('rehaupal-lang',l); document.documentElement.lang=l; document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l)); const tr=t[l]; document.querySelectorAll('[data-i18n]').forEach(el=>{if(tr[el.dataset.i18n])el.textContent=tr[el.dataset.i18n];}); }
     document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
