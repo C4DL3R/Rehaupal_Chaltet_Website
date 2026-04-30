@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,21 +25,21 @@
           <li><a href="#footer-phone" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
         <div class="lang-switcher lang-switcher--mobile">
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="de">DE</button>
           <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="en">EN</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="fr">FR</button>
         </div>
       </nav>
 
       <div class="header-right">
         <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="de">DE</button>
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="de">DE</button>
           <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="en">EN</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="fr">FR</button>
         </div>
         <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen" aria-expanded="false">
           <span></span>
@@ -451,6 +451,11 @@
     };
 
     /* ===================== LANGUAGE SWITCHER ===================== */
+    // Reset to French if user hasn't explicitly chosen a language yet
+    if (!localStorage.getItem('rehaupal-lang-v2')) {
+      localStorage.removeItem('rehaupal-lang');
+      localStorage.setItem('rehaupal-lang-v2', '1');
+    }
     let currentLang = localStorage.getItem('rehaupal-lang') || 'fr';
 
     function setLanguage(lang) {
