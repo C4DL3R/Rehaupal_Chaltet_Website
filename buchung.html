@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Réservation directe – Chalet Rehaupal (−10 %)</title>
   <link rel="canonical" href="https://www.vosges-chalet.fr/buchung.html">
+  <link rel="alternate" hreflang="fr" href="https://www.vosges-chalet.fr/buchung.html">
+  <link rel="alternate" hreflang="de" href="https://www.vosges-chalet.fr/buchung.html">
+  <link rel="alternate" hreflang="en" href="https://www.vosges-chalet.fr/buchung.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.vosges-chalet.fr/buchung.html">
   <meta property="og:title" content="Réservation directe – Chalet Rehaupal (−10 %)">
   <meta property="og:description" content="Réservez directement le Chalet Rehaupal avec −10 % de réduction. Contactez-nous par téléphone ou e-mail. Réponse sous 24 h.">
   <meta property="og:image" content="https://www.vosges-chalet.fr/hero.webp">
@@ -387,7 +391,7 @@
     };
     function setLang(l) { localStorage.setItem('rehaupal-lang',l); document.documentElement.lang=l; document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l)); const tr=t[l]; document.querySelectorAll('[data-i18n]').forEach(el=>{if(tr[el.dataset.i18n])el.textContent=tr[el.dataset.i18n];}); }
     document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-    setLang(localStorage.getItem('rehaupal-lang')||'de');
+    setLang(localStorage.getItem('rehaupal-lang')||'fr');
   </script>
 </body>
 </html>
